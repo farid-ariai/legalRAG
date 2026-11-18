@@ -1,0 +1,9 @@
+dataset,method,queries,inter_rule_or_citation_relationship_queries,variable_length_paths,relationship_types,scoring_relationship_types,scored_fields,owned_condition_scoring_queries,condition_query_ids
+housing,qwen38_kg,4584,0,0,"{""BELONGS_TO"": 3883, ""CONTAINS_PROVISION"": 4584, ""HAS_CONDITION"": 4584}","{""BELONGS_TO"": 3883}","{""p.amounts"": 119, ""p.name"": 2379, ""p.rule"": 30140, ""s.summary"": 3556}",0,
+housing,gemma4_kg,4584,0,0,"{""BELONGS_TO"": 4095, ""CONTAINS_PROVISION"": 4584, ""HAS_CONDITION"": 4584}","{""BELONGS_TO"": 4095}","{""p.actors"": 331, ""p.amounts"": 68, ""p.name"": 2410, ""p.rule"": 28756, ""s.summary"": 1891}",0,
+housing,mistral_kg,4584,0,0,"{""BELONGS_TO"": 4506, ""CONTAINS_PROVISION"": 4584, ""HAS_CONDITION"": 4584}","{""BELONGS_TO"": 4506}","{""p.amounts"": 296, ""p.name"": 4375, ""p.rule"": 28145, ""s.summary"": 1413}",0,
+housing,terra_kg,4584,0,0,"{""BELONGS_TO"": 4542, ""CONTAINS_PROVISION"": 4584, ""HAS_CONDITION"": 4432}","{""BELONGS_TO"": 4542, ""HAS_CONDITION"": 1}","{""a.name"": 7941, ""c.description"": 1, ""p.actors"": 1388, ""p.amounts"": 99, ""p.name"": 4766, ""p.rule"": 24338, ""p.type"": 1396, ""s.summary"": 45}",1,7374
+mbe,qwen38_kg,1071,0,0,"{""CONTAINS_DOCTRINE"": 1071, ""HAS_ELEMENT"": 1071}",{},"{""d.definition"": 7046, ""d.name"": 1087, ""p.summary"": 1437}",0,
+mbe,gemma4_kg,1071,0,0,"{""CONTAINS_DOCTRINE"": 1071, ""HAS_ELEMENT"": 1071}",{},"{""d.definition"": 6365, ""d.name"": 1667, ""p.summary"": 1374}",0,
+mbe,mistral_kg,1071,0,0,"{""CONTAINS_DOCTRINE"": 1071, ""HAS_ELEMENT"": 1071}",{},"{""d.definition"": 6900, ""d.name"": 1960, ""p.summary"": 2962}",0,
+mbe,terra_kg,1071,0,0,"{""CONTAINS_DOCTRINE"": 1071, ""HAS_ELEMENT"": 1071}",{},"{""d.definition"": 8410, ""d.name"": 2015, ""p.summary"": 2517}",0,

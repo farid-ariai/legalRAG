@@ -1,0 +1,50 @@
+[
+  {
+    "dataset": "mbe",
+    "generator": "qwen38_kg",
+    "records": 1071,
+    "material": "query_structure_and_original_fingerprint"
+  },
+  {
+    "dataset": "mbe",
+    "generator": "gemma4_kg",
+    "records": 1071,
+    "material": "query_structure_and_original_fingerprint"
+  },
+  {
+    "dataset": "mbe",
+    "generator": "mistral_kg",
+    "records": 1071,
+    "material": "query_structure_and_original_fingerprint"
+  },
+  {
+    "dataset": "mbe",
+    "generator": "terra_kg",
+    "records": 1071,
+    "material": "query_structure_and_original_fingerprint"
+  },
+  {
+    "dataset": "housing",
+    "generator": "qwen38_kg",
+    "records": 4584,
+    "material": "complete_saved_query"
+  },
+  {
+    "dataset": "housing",
+    "generator": "gemma4_kg",
+    "records": 4584,
+    "material": "complete_saved_query"
+  },
+  {
+    "dataset": "housing",
+    "generator": "mistral_kg",
+    "records": 4584,
+    "material": "complete_saved_query"
+  },
+  {
+    "dataset": "housing",
+    "generator": "terra_kg",
+    "records": 4584,
+    "material": "complete_saved_query"
+  }
+]

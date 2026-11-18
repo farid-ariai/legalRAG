@@ -1,0 +1,46 @@
+[
+  {
+    "extractor": "qwen",
+    "question_reference_pairs": 1071,
+    "missing_pairs": 5,
+    "missing_pairs_percent": 0.4668534080298786,
+    "unique_gold_passages": 1026,
+    "unique_gold_without_unit": 5,
+    "missing_qids": [
+      "mbe_15",
+      "mbe_303",
+      "mbe_1103",
+      "mbe_1132",
+      "mbe_737"
+    ],
+    "source_sha256": "03f058cc1aba597bcb6f30348da23cbca1a9058ae638a45bf052b55e2653cc44"
+  },
+  {
+    "extractor": "llama",
+    "question_reference_pairs": 1071,
+    "missing_pairs": 17,
+    "missing_pairs_percent": 1.5873015873015872,
+    "unique_gold_passages": 1026,
+    "unique_gold_without_unit": 17,
+    "missing_qids": [
+      "mbe_15",
+      "mbe_243",
+      "mbe_438",
+      "mbe_463",
+      "mbe_593",
+      "mbe_607",
+      "mbe_627",
+      "mbe_744",
+      "mbe_827",
+      "mbe_920",
+      "mbe_935",
+      "mbe_955",
+      "mbe_969",
+      "mbe_1031",
+      "mbe_1103",
+      "mbe_1140",
+      "mbe_143"
+    ],
+    "source_sha256": "f104d8e38167af7f22ebdae79483e7fe517135c02f2b325d0602b83e51cc3b33"
+  }
+]

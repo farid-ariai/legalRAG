@@ -1,0 +1,11 @@
+dataset,query_generator,campaign,unit,generation_units,recorded_responses,rejected_responses,units_with_rejection,accepted_units_before_later_repairs,terminal_rejected_units,transport_error_records,complete_attempt_history,rejection_reasons
+mbe,qwen38_kg,primary_full,question,1071,1071,0,0,1071,0,0,True,{}
+mbe,gemma4_kg,primary_full,question,1071,1071,0,0,1071,0,0,True,{}
+mbe,mistral_kg,primary_full,question,1071,1075,4,4,1071,0,0,True,"{""CASE-clause cap"": 4}"
+mbe,terra_kg,primary_full,question,1071,1071,29,29,1042,29,0,True,"{""Strict MBE query scaffold"": 29}"
+housing,qwen38_kg,primary_groups_in_clean_cohort,question-text group,225,225,0,0,225,0,0,True,{}
+housing,gemma4_kg,primary_groups_in_clean_cohort,question-text group,225,225,,,225,,0,False,{}
+housing,mistral_kg,primary_groups_in_clean_cohort,question-text group,225,234,9,9,225,0,0,True,"{""CASE-clause cap"": 9}"
+housing,terra_kg,primary_full_v2,question,4584,4636,54,52,4582,2,0,True,"{""CASE-clause cap"": 1, ""Raw condition-node output"": 6, ""Required source-identifier alias"": 47}"
+housing,terra_kg,execution_failure_recovery_199,question,199,204,5,5,199,0,0,True,"{""Raw condition-node output"": 1, ""Required source-identifier alias"": 4}"
+housing,terra_kg,residual_execution_recovery_9,question,9,9,0,0,9,0,0,True,{}

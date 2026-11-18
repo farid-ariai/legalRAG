@@ -1,0 +1,17 @@
+{
+  "questions": {
+    "published_all": 1195,
+    "train": 954,
+    "test": 117,
+    "omitted_validation": 124,
+    "evaluated": 1071
+  },
+  "passages": {
+    "train": 686324,
+    "test": 85677,
+    "evaluated": 772001
+  },
+  "all_question_input_fields_labels_and_gold_identifiers_match": true,
+  "all_passage_fields_and_order_match": true,
+  "public_source": "https://huggingface.co/datasets/reglab/barexam_qa/tree/main/data"
+}

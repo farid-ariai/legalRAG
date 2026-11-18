@@ -1,0 +1,278 @@
+{
+  "format": 1,
+  "date": "18 November 2026",
+  "files": {
+    "DATA_ACCESS.md": {
+      "sha256": "0493e373ce43719aee7803a74f50cf12c43f51329f689f174b03f2d45d0af1cc",
+      "bytes": 3307
+    },
+    "README.md": {
+      "sha256": "90109f194b03ced9dcf18d989f34bbf68b51f6bd7bcc44e3584a7ba0a6b6f854",
+      "bytes": 4882
+    },
+    "datasets/housing_cohort.csv": {
+      "sha256": "4ae4d6a57fbc78e7b8d5aaf262d021cae922422a11acbb3f70aa8521688cb95a",
+      "bytes": 174247
+    },
+    "datasets/housing_selection.json": {
+      "sha256": "0e775b14603ccca642d922ce8be0d987fffdc4b6cd39d7402392b37e7ed9dbd9",
+      "bytes": 1185
+    },
+    "datasets/mbe_partitions.json": {
+      "sha256": "556c4c4363c2113e4b9f7104cccdd1f4e0baf3b1ed3d74f2725030215ef77eeb",
+      "bytes": 429
+    },
+    "expansion/housing_saved_expansions.jsonl": {
+      "sha256": "646578e965001e0af1a25c8635b3a7c6fd2b392c56f38d8b2b739b9fdeaed660",
+      "bytes": 205183
+    },
+    "expansion/ir_metrics.csv": {
+      "sha256": "172af0fa14f139b0001c7b2f56fd22d81a5a73a0fbcf39d80d60ff90b6ae3feb",
+      "bytes": 4368
+    },
+    "expansion/mbe_fingerprints.csv": {
+      "sha256": "8350e0d76092baaf7d68dfe9799d5cc4f96e69e62a8c2e0e31b830b1a6b2a335",
+      "bytes": 79358
+    },
+    "expansion/paired_expansion_effects.csv": {
+      "sha256": "df0afbbc782389c73e6b3eac3ec0822dbd4dd387d889e51f6c820bcd022e852b",
+      "bytes": 354
+    },
+    "expansion/qa_metrics.csv": {
+      "sha256": "1408c96accf386984e17dfc78402cfca995be62639f233d596d5645243a4e941",
+      "bytes": 468
+    },
+    "extraction_quality/assessment_protocol.json": {
+      "sha256": "d0d5149a81b11120544a56c8556d13de307ca1f5ba37bccdf25650fe95687a91",
+      "bytes": 2399
+    },
+    "extraction_quality/housing_assessments.csv": {
+      "sha256": "271bffe2f5d4f84013024ae6862517b8e79ad056d192b7aefd236f3cdbd06bc2",
+      "bytes": 2542
+    },
+    "extraction_quality/mbe_quality_reused.json": {
+      "sha256": "868b008fcdafb21f13e7c03bcb202c9d77d4891796a0b4899928442bffcc6a98",
+      "bytes": 2313
+    },
+    "generation_audit/execution_failure_recovery.json": {
+      "sha256": "4e5e7045e2cfe0caa7c85ebdc55f79f9cb4e7065f974bad5d11259e0452c3c88",
+      "bytes": 710
+    },
+    "generation_audit/extraction_allocation_accounting.csv": {
+      "sha256": "9092eef87614fb3f9aa31c41cdea17e83bfc9c15b07d8802014f2d5a0905e0fa",
+      "bytes": 259
+    },
+    "generation_audit/extraction_cost_summary.json": {
+      "sha256": "a492703de868dc1dd041bbff45b1c38e58219137c58e18aa170cef6bc7ac7c18",
+      "bytes": 1330
+    },
+    "generation_audit/query_generation_summary.csv": {
+      "sha256": "4543859c37fae5a97447bc5ce1d34fef93988b85e7160b4f1d8e25054b895ab5",
+      "bytes": 1309
+    },
+    "pipeline/code/Structured_extraction.py": {
+      "sha256": "0895f0a07b35d88506abc7181c4035eada33528381001de0ec466aa5fbda2daa",
+      "bytes": 7874
+    },
+    "pipeline/code/audit_mbe_api_queries.py": {
+      "sha256": "4fce21780768a10f21d1deaf75f564fe0eb25b7ff464678b1cf4da81f34777f1",
+      "bytes": 27960
+    },
+    "pipeline/code/housing_qa_cypher_safety.py": {
+      "sha256": "0e40d8986f3af6a22f96c082b90e36971ebd204cacf73905a784191958843e72",
+      "bytes": 5952
+    },
+    "pipeline/code/housing_qa_grouped_api_cypher_generation.py": {
+      "sha256": "98af7bee9a0f6645805b3de81ce7faa47d61f5ca3ae56291b03c3022aa360edf",
+      "bytes": 40906
+    },
+    "pipeline/code/housing_qa_load_neo4j_graph_repaired.py": {
+      "sha256": "cae7d66822992e71235d83d3258620da90f5cd34080d0145960d0268e020f0ee",
+      "bytes": 13798
+    },
+    "pipeline/code/housing_qa_openai_flex_cypher_generation.py": {
+      "sha256": "b640f35ea3bd982d3115f35d15f1d85704f5adf02414b1e4eb59505e14deb316",
+      "bytes": 36001
+    },
+    "pipeline/code/housing_qa_structured_extraction.py": {
+      "sha256": "02212661a2d2103215f5148732bf1db9ffc206117ba1141809d63d5caafb2171",
+      "bytes": 23660
+    },
+    "pipeline/code/mbe_api_cypher_generation.py": {
+      "sha256": "6f6455d64dd373661d3a2b4df8f8123d3894d56c2237d4d5d3d9cf943457a50f",
+      "bytes": 36957
+    },
+    "pipeline/code/mbe_load_neo4j_graph.py": {
+      "sha256": "2047675e1713a8c31d59b1ebdf578466f076d13ff19795f1d3056ca008258a56",
+      "bytes": 15850
+    },
+    "pipeline/code/mbe_openai_flex_cypher_generation.py": {
+      "sha256": "610e5c6e521b008a89bb65f5b21abb0b52d153853a6fde601213eba20ea0ccf6",
+      "bytes": 21591
+    },
+    "pipeline/prompts/Structured_extraction.txt": {
+      "sha256": "9522f965cbdc5d8805d68ef17480b487082f8c39737f255723b9a264db074a9d",
+      "bytes": 2586
+    },
+    "pipeline/prompts/Structured_extraction_schema_source.txt": {
+      "sha256": "e7f4e84bb4a3bb32233b5a39ba79da34a3d16da2e3d16179ea032cd87a136c4b",
+      "bytes": 3294
+    },
+    "pipeline/prompts/housing_qa_structured_extraction.txt": {
+      "sha256": "5872c5c2785a1620f491bc2d1a368cbeb12b1ae9ffa35bb08cfccbc58ef6c27e",
+      "bytes": 2262
+    },
+    "pipeline/prompts/housing_qa_structured_extraction_schema_source.txt": {
+      "sha256": "e5ae93d3cd37189356865a39f5c06b0158950b0a3191a4aeddbb9199afc945cc",
+      "bytes": 3825
+    },
+    "pipeline/prompts/housing_v6.json": {
+      "sha256": "b3b58810132bf7584a32c1230d350c6a96f2aa98f53e3ea01823cfcdf5225473",
+      "bytes": 4475
+    },
+    "pipeline/prompts/mbe_v1.json": {
+      "sha256": "2f4d7648dacb3182f37bfb35b02acd6b5ab34146c57ab8067759a55053ac780c",
+      "bytes": 4459
+    },
+    "queries/coverage.json": {
+      "sha256": "6ede83481af1dca62882d83a7bc690f986c5dca3828429867c24d5ab9318db59",
+      "bytes": 1067
+    },
+    "queries/housing_gemma4_kg.jsonl": {
+      "sha256": "104eff290900290ce9aaa99484d575c702d51447c122dc8640f2bb0e8aa1a678",
+      "bytes": 6682639
+    },
+    "queries/housing_mistral_kg.jsonl": {
+      "sha256": "444deebb7acb761c50a5a27e9dc3b4338bc2f37eb4a8cc6779134447a12a290b",
+      "bytes": 7591648
+    },
+    "queries/housing_qwen38_kg.jsonl": {
+      "sha256": "b79f1b0d05d9ce843cd4e7fbbe541a09c161195edf73a312d0eda1638a08c13f",
+      "bytes": 7496963
+    },
+    "queries/housing_terra_kg.jsonl": {
+      "sha256": "915f37cac1a54c6bc4e1ed4a42db3fd5e8af16ae6194ce506a82f5ad015264f6",
+      "bytes": 6544157
+    },
+    "queries/mbe_gemma4_kg.jsonl": {
+      "sha256": "9db03e8ad9954e451d25ff227f800234a20e3a6ed63b4ac2001b72e6f93ff7a7",
+      "bytes": 1379006
+    },
+    "queries/mbe_mistral_kg.jsonl": {
+      "sha256": "981551dbba6ede2a2b7c1566b0c39cd54b60443d60a510cb92a593b0a73c5ec5",
+      "bytes": 1474940
+    },
+    "queries/mbe_qwen38_kg.jsonl": {
+      "sha256": "1f38e5069f9fcf8fe8e955f2baf2f3f3184c27d7c36ba19bd20d0c17e38225db",
+      "bytes": 1369725
+    },
+    "queries/mbe_terra_kg.jsonl": {
+      "sha256": "b6c2684dc4dc18b88c9332378c1aa6fbe933786a678855df440157fe921765eb",
+      "bytes": 1510403
+    },
+    "queries/relationship_census.csv": {
+      "sha256": "cdba1272eb850ac1f63fcfeb31eaebcef1051c9b67b7de2f40f2cff54a0ec174",
+      "bytes": 1793
+    },
+    "queries/relationship_flags.csv": {
+      "sha256": "b6dda5812af50f1ca683716338932e3a2201019a867de16387d21ea1ac226fb2",
+      "bytes": 2188226
+    },
+    "raw_cues/aggregate_metrics.csv": {
+      "sha256": "bbc574b4248eb35cdff265d5ef57e6aa85ba41c45b0b341b521635e577b8924e",
+      "bytes": 24230
+    },
+    "raw_cues/tie_sensitivity_summary.csv": {
+      "sha256": "4c61183293db80a0acefb7fd56d1e9eb24ce61f392fce4bbc2a2c01345713211",
+      "bytes": 2662
+    },
+    "review_diagnostics/candidate_list_lengths.csv": {
+      "sha256": "9fd67795030845f50246f6ee7ed9df76007be5a542389df7f256f9be57c3193f",
+      "bytes": 1310
+    },
+    "review_diagnostics/control_correctness.csv": {
+      "sha256": "5b9ade27482c7a7addfa83b96871dcaf74f44a9ce2dead0f99103ecaf5bef2ea",
+      "bytes": 436608
+    },
+    "review_diagnostics/housing_class_diagnostics.csv": {
+      "sha256": "23bdf66fe3ea8ebb53216f092b30975b3fdc4e83f568583f12778314459a2a88",
+      "bytes": 118394
+    },
+    "review_diagnostics/ir_figure_values.csv": {
+      "sha256": "d6b7ed2f0f14070c9577dfbb5cd005e81a8c3e2686dc824a3cc986204c23054a",
+      "bytes": 9758
+    },
+    "review_diagnostics/mbe_initial_top10_source_counts_by_question.csv": {
+      "sha256": "c8645c8c9af29828828c0589a47486c3d71e87176fe361a6bb04e9c1ca37eed9",
+      "bytes": 95509
+    },
+    "review_diagnostics/mbe_requested_reference_transitions.csv": {
+      "sha256": "6d8ddb8133ec18074ebe1c53ac92de6770b2dbf87c850946d93dad9e112e1ff3",
+      "bytes": 136201
+    },
+    "review_diagnostics/mbe_reranked_k10_reference_membership_by_question.csv": {
+      "sha256": "10aac3a89ac29c2d92c4f5d7eefed8eaf414819f3a690ac76ff2f962609766c6",
+      "bytes": 14072
+    },
+    "review_diagnostics/mbe_terra_source_mix.csv": {
+      "sha256": "248b35e245b9d4e8986fe57cc9a6c9a873d946b8e335c53d71441e7759601c54",
+      "bytes": 2058
+    },
+    "review_diagnostics/query_generation_telemetry.csv": {
+      "sha256": "b8c0d48af4b72313d8348e226bd424eac79cf24ee03a595aa2ad0a49db33d9e8",
+      "bytes": 695779
+    },
+    "review_diagnostics/query_generation_telemetry_summary.csv": {
+      "sha256": "5422abdc24f87a7b36db8ff1c589986a1b81338c372d50b791b91a7e80255944",
+      "bytes": 1115
+    },
+    "review_diagnostics/record_replay.json": {
+      "sha256": "56724eb09e28b81b2543d37c40b8f58d960efd6f11ac95c446e76c896e0312ab",
+      "bytes": 3429
+    },
+    "review_diagnostics/revision_numbers.json": {
+      "sha256": "39325fb1e8abc71c37f4796c3fc80d8445c78183ada3297b70a8db5eeb90c250",
+      "bytes": 4698
+    },
+    "statistics/all_fixed_stage_accuracy.csv": {
+      "sha256": "560f4fdf7d6dde9e26e3c3877c122ecb14caa352bb8f6ffe540af81a87c08b83",
+      "bytes": 106719
+    },
+    "statistics/candidate_recall100.csv": {
+      "sha256": "2a7fb670f799038d1645c27c8051878e1174c94136fa03c38bc384e01908665b",
+      "bytes": 3091
+    },
+    "statistics/candidate_recall100_per_question.csv": {
+      "sha256": "888bb1eddef1022f64f94be912e2868196c411c095a868d0de9fdc8085a832b7",
+      "bytes": 2863947
+    },
+    "statistics/contract.json": {
+      "sha256": "c2049789b70c22ad9a9c57c4a9f0c374508e784241c2bd276e89cb388b808b87",
+      "bytes": 1518
+    },
+    "statistics/manifest.json": {
+      "sha256": "84833e1ddd39184ff02ccf965a2c5a9f0ecf36b1140a754bab8b88b0239aa025",
+      "bytes": 407
+    },
+    "statistics/mbe_gold_structural_coverage.json": {
+      "sha256": "4a0a98a24a90c449f04a7ca8c46cbacf78943fc28800300a416a287148cb9905",
+      "bytes": 1043
+    },
+    "statistics/paired_KG_vs_baselines.csv": {
+      "sha256": "ddfe78d77c2eb77a291eed4f8309f7b666c1d3a7e9c69f382ac6cc9d2f1e1843",
+      "bytes": 451308
+    },
+    "statistics/reproduce_statistics.py": {
+      "sha256": "0998c8493b4064a55307ca86b4e7598d5f2e1ae303035100b39650e2025f93a7",
+      "bytes": 4061
+    },
+    "statistics/validated_inputs.npz": {
+      "sha256": "cf8add7c8159d3af2c3057630165e4b2745ae4bb45ecc6b1641a0c1242500bff",
+      "bytes": 394569
+    },
+    "verify_bundle.py": {
+      "sha256": "2ade4e14876c223a04c8267b9640d1287e0fb4718e32f7cd366be47c4ebcc545",
+      "bytes": 14022
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "sha256": {
+    "validated_inputs.npz": "cf8add7c8159d3af2c3057630165e4b2745ae4bb45ecc6b1641a0c1242500bff",
+    "contract.json": "c2049789b70c22ad9a9c57c4a9f0c374508e784241c2bd276e89cb388b808b87",
+    "paired_KG_vs_baselines.csv": "ddfe78d77c2eb77a291eed4f8309f7b666c1d3a7e9c69f382ac6cc9d2f1e1843",
+    "reproduce_statistics.py": "0998c8493b4064a55307ca86b4e7598d5f2e1ae303035100b39650e2025f93a7"
+  }
+}

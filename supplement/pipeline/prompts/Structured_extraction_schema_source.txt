@@ -1,0 +1,86 @@
+class CaseCitation(BaseModel):
+    """
+    Represents a legal case citation.
+    """
+    case_name: str = Field(
+        ..., description="The name of the case (e.g., 'St. Paul Fire & Marine Ins. Co. v. City of New York')."
+    )
+    volume: Optional[str] = Field(
+        None, description="The volume number of the reporter."
+    )
+    reporter: Optional[str] = Field(
+        None, description="The reporter abbreviation (e.g., 'F.2d', 'N.Y.S.2d', 'So.2d')."
+    )
+    page: Optional[str] = Field(
+        None, description="The starting page number of the case."
+    )
+    pinpoint: Optional[str] = Field(
+        None, description="The specific page being cited, if different from starting page."
+    )
+    court: Optional[str] = Field(
+        None, description="The court that decided the case (e.g., '2d Cir.', 'Fla. 5th DCA')."
+    )
+    year: Optional[str] = Field(
+        None, description="The year the case was decided."
+    )
+    parallel_citations: Optional[List[str]] = Field(
+        None, description="Any parallel citations for the same case in different reporters."
+    )
+
+class LegalElement(BaseModel):
+    """
+    Represents a single element or criterion of a legal doctrine or claim.
+    """
+    element_number: int = Field(
+        ..., description="The sequential number of this element (1, 2, 3, etc.)."
+    )
+    description: str = Field(
+        ..., description="The text describing what must be proven or established for this element."
+    )
+
+class LegalDoctrine(BaseModel):
+    """
+    Represents a legal doctrine, rule, or claim from the US Bar Exam.
+    """
+    doctrine_name: str = Field(
+        ..., description="The name of the legal doctrine, rule, or type of claim (e.g., 'res ipsa loquitur', 'strict liability products liability')."
+    )
+    doctrine_type: str = Field(
+        ...,
+        description="The type/category of the legal doctrine.",
+        enum=doctrine_types
+    )
+    area_of_law: str = Field(
+        ...,
+        description="The area of law this doctrine belongs to.",
+        enum=legal_areas
+    )
+    definition: str = Field(
+        ..., description="A brief definition or description of what the doctrine does or establishes."
+    )
+    elements: List[LegalElement] = Field(
+        ..., description="The numbered elements or criteria that must be established to apply this doctrine."
+    )
+    supporting_citations: List[CaseCitation] = Field(
+        ..., description="List of case citations that support or define this doctrine."
+    )
+    exceptions: Optional[List[str]] = Field(
+        None, description="Any notable exceptions to the doctrine."
+    )
+    related_doctrines: Optional[List[str]] = Field(
+        None, description="Names of related legal doctrines or concepts."
+    )
+
+class BarExamExtraction(BaseModel):
+    """
+    Root model for extracting structured legal information from US Bar Exam texts.
+    """
+    doctrines: List[LegalDoctrine] = Field(
+        ..., description="List of legal doctrines extracted from the text."
+    )
+    jurisdiction: Optional[str] = Field(
+        None, description="The primary jurisdiction referenced (e.g., 'Federal', 'New York', 'Florida')."
+    )
+    source_text_summary: str = Field(
+        ..., description="A brief summary of what the source text discusses."
+    )

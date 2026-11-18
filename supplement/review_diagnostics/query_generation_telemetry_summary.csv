@@ -1,0 +1,9 @@
+dataset,query_generator,units,unit_type,model_alias,records_with_seconds,median_recorded_seconds,records_with_input_tokens,recorded_input_tokens,records_with_output_tokens,recorded_output_tokens,median_recorded_output_tokens,complete_attempt_history
+mbe,qwen38_kg,1071,question,['Qwen/Qwen3.8-27B'],1071,79.14,1071,1426094,1071,359660,334,True
+mbe,gemma4_kg,1071,question,['google/gemma-4-31B-it'],1071,105.079,1071,1483406,1071,396133,368,True
+mbe,mistral_kg,1071,question,['mistralai/Mistral-Small-3.2-24B-Instruct-2506'],1071,81.261,1071,1440571,1071,429487,396,True
+mbe,terra_kg,1071,question,['gpt-5.6-terra'],1042,2.7385,1042,1373621,1042,420912,403.0,True
+housing,qwen38_kg,225,question_template,['Qwen/Qwen3.8-27B'],225,123.7,225,336123,225,116413,521,True
+housing,gemma4_kg,225,question_template,['google/gemma-4-31B-it'],225,135.319,225,348915,225,110498,490,False
+housing,mistral_kg,225,question_template,['mistralai/Mistral-Small-3.2-24B-Instruct-2506'],225,113.796,225,360032,225,131002,564,True
+housing,terra_kg,4584,question,['gpt-5.6-terra'],4582,2.954,4582,6125224,4582,2047723,444.0,True

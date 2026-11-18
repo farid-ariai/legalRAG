@@ -1,0 +1,95 @@
+class StatuteCitation(BaseModel):
+    """Statutory cross-reference appearing in the passage."""
+
+    code_name: Optional[str] = Field(
+        None, description="Code or act name, e.g. 'Wis. Stat.' or 'Del. Code Ann. tit. 25'."
+    )
+    section: Optional[str] = Field(
+        None, description="Section or subsection number, e.g. '704.28' or '5514(a)'."
+    )
+    description: Optional[str] = Field(
+        None, description="What the cross-referenced provision covers, if stated."
+    )
+
+class RuleCondition(BaseModel):
+    """A condition, precondition, element, or triggering circumstance."""
+
+    number: Optional[int] = Field(
+        None, description="Ordinal if the passage enumerates the conditions."
+    )
+    description: str = Field(..., description="The condition as stated in the passage.")
+
+class StatutoryProvision(BaseModel):
+    """A discrete legal provision extracted from one statute section."""
+
+    topic_name: str = Field(
+        ..., description="Short name of the provision, right, duty, procedure, or definition."
+    )
+    topic_type: ProvisionType = Field(..., description="Provision classification.")
+    area_of_law: AreaOfLaw = Field(
+        ...,
+        description=(
+            "Subject area of the state code this provision belongs to. Assign on the "
+            "passage's own terms; most sections are NOT landlord-tenant."
+        ),
+    )
+    concise_rule: str = Field(
+        ...,
+        description=(
+            "Concise statement of the rule. Preserve exact deadlines, notice "
+            "periods, day counts, and dollar amounts."
+        ),
+    )
+    # REQUIRED, not Optional: under constrained decoding an Optional list is
+    # satisfied by emitting null, and this field was None in 385/385 provisions
+    # in testing despite the amounts being present in the text. Deadlines and
+    # dollar limits are the operative content of statutes, so losing them would
+    # hollow out the graph silently.
+    deadlines_or_amounts: list[str] = Field(
+        ..., max_length=20,
+        description=(
+            "Verbatim deadlines, notice periods, day counts, percentages, or dollar "
+            "limits stated in the passage, e.g. '14 days', 'two months rent'."
+        ),
+    )
+    actors_affected: list[str] = Field(
+        ..., max_length=15,
+        description="Participants directly affected, e.g. landlord, tenant, court, sheriff.",
+    )
+    conditions: list[RuleCondition] = Field(
+        ..., max_length=25,
+        description="Conditions, elements, or preconditions stated in the passage."
+    )
+    cross_references: list[StatuteCitation] = Field(
+        ..., max_length=25,
+        description="Statutory cross-references supporting or qualifying this rule."
+    )
+    exceptions: list[str] = Field(
+        ..., max_length=15,
+        description="Express exceptions, exemptions, or qualifications; [] if none."
+    )
+    related_topics: list[str] = Field(
+        ..., max_length=15,
+        description="Other provisions expressly linked to this rule; [] if none."
+    )
+
+class HousingStatuteExtraction(BaseModel):
+    """Root structured output for one Housing QA statute section."""
+
+    passage_role: Optional[str] = Field(
+        None,
+        description=(
+            "High-level role, e.g. 'definition section', 'procedural requirement', "
+            "'substantive duty', 'penalty provision', or 'scope and exemptions'."
+        ),
+    )
+    rules: list[StatutoryProvision] = Field(
+        ..., max_length=20,
+        description="All distinct legal provisions extracted from the passage."
+    )
+    jurisdiction: Optional[str] = Field(
+        None, description="U.S. state or territory whose law this passage states."
+    )
+    source_text_summary: str = Field(
+        ..., description="Brief summary of what the statute section covers."
+    )

@@ -1,0 +1,17 @@
+{
+  "initial_queries": 4584,
+  "initial_execution_failures": 199,
+  "initial_error_types": {
+    "neo4j:Neo.ClientError.Statement.SyntaxError": 198,
+    "neo4j:Neo.ClientError.Statement.TypeError": 1
+  },
+  "first_recovery_queries": 199,
+  "first_recovery_execution_failures": 9,
+  "first_recovery_error_types": {
+    "neo4j:Neo.ClientError.Statement.TypeError": 1,
+    "neo4j:Neo.ClientError.Statement.SyntaxError": 8
+  },
+  "final_recovery_execution_failures": 0,
+  "original_rankings_sha256": "bc397bbdfdcf1fe70b091981deb583f1af988baeb6ff2be8045fcd479f6929bd",
+  "limits": "Original generation, first recovery and final recovery are distinct stages; do not sum their question counts into a failure rate."
+}

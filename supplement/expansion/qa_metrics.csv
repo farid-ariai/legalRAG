@@ -1,0 +1,5 @@
+dataset,arm,model,stage,k,questions,correct,accuracy_percent,unparsed,truncated_contexts,mean_input_tokens
+mbe,raw,gemma3_12b_it,reranked,10,1071,626,58.4500466853408,0,0,2312.6890756302523
+mbe,expanded,gemma3_12b_it,reranked,10,1071,655,61.1577964519141,0,0,2356.1783380018674
+housing,raw,gemma3_12b_it,reranked,10,4584,3234,70.54973821989529,0,185,4440.447643979058
+housing,expanded,gemma3_12b_it,reranked,10,4584,3221,70.26614310645724,0,180,4435.428446771379

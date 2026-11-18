@@ -1,0 +1,34 @@
+{
+  "dataset": "HousingQA_clean",
+  "id_namespace": "corpus",
+  "counts": {
+    "n_source_questions": 6853,
+    "n_verified_before_hygiene": 4593,
+    "n_clean_questions": 4584,
+    "n_excluded_questions": 2269,
+    "n_corpus_rows": 1837403,
+    "n_gold_references": 9973,
+    "n_gold_statutes": 672,
+    "n_states": 47,
+    "n_question_groups": 225,
+    "answers": {
+      "No": 3086,
+      "Yes": 1498
+    }
+  },
+  "policy": {
+    "gold": "retain only whole questions with every reference verified",
+    "conflicting_answers": "exclude every row in a conflicting state/question group across the full source",
+    "duplicates": "keep first only for identical complete annotations; otherwise quarantine the group",
+    "corpus": "full byte-identical independent copy; no distractor removal or ID renumbering"
+  },
+  "validation": {
+    "all_retained_references_verified": true,
+    "all_public_statute_ids_match_verified_corpus_ids": true,
+    "all_retained_gold_text_citation_state_checked": true,
+    "no_unresolved_or_empty_gold_questions": true,
+    "no_conflicting_or_duplicate_question_inputs": true,
+    "corpus_copy_byte_identical": true,
+    "csv_json_round_trip": true
+  }
+}

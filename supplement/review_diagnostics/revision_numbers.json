@@ -1,0 +1,192 @@
+{
+  "cohort": {
+    "mbe": 1071,
+    "housing_clean": 4584
+  },
+  "mbe_unique_reference_sources": {
+    "mbe": 1026
+  },
+  "mbe_question_weighted_reference_sources": {
+    "mbe": 1071
+  },
+  "mbe_corpus_sources": {
+    "mbe": 2600,
+    "caselaw": 763285,
+    "wex": 6116
+  },
+  "mbe_initial_top10": {
+    "terra_qwen": {
+      "caselaw": 8789,
+      "mbe": 1407,
+      "wex": 514
+    },
+    "terra_llama": {
+      "mbe": 1162,
+      "caselaw": 9297,
+      "wex": 251
+    },
+    "qwen_dense": {
+      "mbe": 3637,
+      "caselaw": 6391,
+      "wex": 682
+    }
+  },
+  "mbe_fixed_stage": {
+    "Terra_vs_BM25": {
+      "positive": 112,
+      "negative": 0,
+      "tied": 0,
+      "median_pp": 7.282913165266106,
+      "min_pp": 2.8944911297852474,
+      "max_pp": 14.379084967320262
+    },
+    "Terra_vs_Qwen_dense": {
+      "positive": 112,
+      "negative": 0,
+      "tied": 0,
+      "median_pp": 3.2212885154061626,
+      "min_pp": 0.7469654528478058,
+      "max_pp": 6.5359477124183005
+    },
+    "Mistral_vs_Qwen_dense": {
+      "positive": 2,
+      "negative": 110,
+      "tied": 0,
+      "median_pp": -4.1083099906629315,
+      "min_pp": -7.469654528478058,
+      "max_pp": 0.3734827264239029
+    },
+    "Terra_vs_Mistral": {
+      "positive": 112,
+      "negative": 0,
+      "tied": 0,
+      "median_pp": 7.282913165266106,
+      "min_pp": 2.987861811391223,
+      "max_pp": 11.671335200746965
+    }
+  },
+  "selected_holm_positive": {
+    "mbe/bm25": {
+      "n": 88,
+      "above_own_no_retrieval": 88,
+      "below_own_no_retrieval": 0,
+      "tied": 0,
+      "by_answerer": {
+        "gemma3_12b_it": 14,
+        "gemma3_27b_it": 12,
+        "equall_saul_7b_instruct_v1": 15,
+        "equall_saul_54b_instruct": 11,
+        "mistral_small_32_24b_instruct_2506": 11,
+        "qwen3_8b": 12,
+        "qwen3_30b_a3b_instruct_2507": 13
+      }
+    },
+    "mbe/qwen3_dense": {
+      "n": 11,
+      "above_own_no_retrieval": 11,
+      "below_own_no_retrieval": 0,
+      "tied": 0,
+      "by_answerer": {
+        "gemma3_27b_it": 2,
+        "equall_saul_7b_instruct_v1": 7,
+        "equall_saul_54b_instruct": 2
+      }
+    },
+    "housing/bm25": {
+      "n": 0,
+      "above_own_no_retrieval": 0,
+      "below_own_no_retrieval": 0,
+      "tied": 0,
+      "by_answerer": {}
+    },
+    "housing/qwen3_dense": {
+      "n": 27,
+      "above_own_no_retrieval": 4,
+      "below_own_no_retrieval": 23,
+      "tied": 0,
+      "by_answerer": {
+        "gemma3_12b_it": 1,
+        "gemma3_27b_it": 2,
+        "equall_saul_7b_instruct_v1": 3,
+        "equall_saul_54b_instruct": 15,
+        "qwen3_8b": 2,
+        "qwen3_30b_a3b_instruct_2507": 4
+      }
+    }
+  },
+  "housing_gemma12_class_example": {
+    "no_retrieval": {
+      "correct": 3105,
+      "yes_correct": 20,
+      "no_correct": 3085
+    },
+    "qwen3_dense": {
+      "correct": 3234,
+      "yes_correct": 929,
+      "no_correct": 2305
+    },
+    "mistral_kg": {
+      "correct": 3432,
+      "yes_correct": 741,
+      "no_correct": 2691
+    }
+  },
+  "mbe_gemma27_k10_terra_qwen_vs_dense_by_reference_in_requested_lists": {
+    "neither_hit": {
+      "questions": 763,
+      "KG_correct": 484,
+      "dense_correct": 435,
+      "net_correct": 49,
+      "KG_only_correct": 91,
+      "dense_only_correct": 42
+    },
+    "dense_only_hit": {
+      "questions": 134,
+      "KG_correct": 93,
+      "dense_correct": 90,
+      "net_correct": 3,
+      "KG_only_correct": 16,
+      "dense_only_correct": 13
+    },
+    "KG_only_hit": {
+      "questions": 58,
+      "KG_correct": 46,
+      "dense_correct": 42,
+      "net_correct": 4,
+      "KG_only_correct": 8,
+      "dense_only_correct": 4
+    },
+    "both_hit": {
+      "questions": 116,
+      "KG_correct": 84,
+      "dense_correct": 83,
+      "net_correct": 1,
+      "KG_only_correct": 6,
+      "dense_only_correct": 5
+    }
+  },
+  "housing_selected_all_vs_no_retrieval": {
+    "above": 54,
+    "below": 58,
+    "tied": 0
+  },
+  "saved_query_dependency_census": {
+    "mbe": {
+      "query_records": 4284,
+      "inter_rule_or_citation": 0,
+      "legal_area_in_score": 0,
+      "elements_referenced": 4284,
+      "elements_in_score": 0,
+      "condition_in_score": 0
+    },
+    "housing": {
+      "query_records": 18336,
+      "inter_rule_or_citation": 0,
+      "legal_area_in_score": 17026,
+      "elements_referenced": 0,
+      "elements_in_score": 0,
+      "condition_in_score": 1
+    }
+  },
+  "scientific_scope": "Descriptive re-tabulations of saved outcomes, including the retrospective generator comparison and no-retrieval comparisons. Only the previously specified KG versus baseline tests are used for Holm inference. No model inference, retrieval, random draws or new hypothesis tests."
+}

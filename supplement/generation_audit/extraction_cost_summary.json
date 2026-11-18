@@ -1,0 +1,24 @@
+{
+  "status": "PARTIAL_STUDY_COST_MEASURED",
+  "stage": "HousingQA Llama completion of missing records",
+  "additional_passages": 66906,
+  "preserved_historical_passages": 1770497,
+  "traceable_H100_allocations": 9,
+  "parent_job_allocation_seconds": 29616,
+  "parent_job_H100_hours": 8.226666666666667,
+  "five_production_job_allocation_seconds": 28371,
+  "five_production_invocation_elapsed_seconds": 28195.982782125473,
+  "recorded_generation_attempts": 70197,
+  "recorded_initial_attempts": 66906,
+  "recorded_retry_attempts": 3291,
+  "recorded_input_tokens": 62200610,
+  "recorded_output_tokens": 65115716,
+  "final_parse_error_rows": 265,
+  "accounting_rule": "Sum one Slurm parent-job ElapsedRaw per one-H100 allocation; do not add overlapping batch/extern/nvidia-smi steps. Failed and cancelled smoke allocations are included.",
+  "limits": [
+    "Allocation time is not GPU utilisation or monetary cost.",
+    "A cancelled parent job has a longer cleanup batch step; raw accounting is retained and not silently combined with parent durations.",
+    "The original 1,770,497 Housing Llama records and the other three extraction sources lack complete source-linked cost telemetry in this audit.",
+    "This is a partial-stage measurement, not total extraction cost and not a basis for extrapolating full-corpus cost."
+  ]
+}

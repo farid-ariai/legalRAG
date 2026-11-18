@@ -1,0 +1,88 @@
+{
+  "status": "EXISTING_MBE_ASSESSMENTS_REUSED_UNCHANGED",
+  "assessment_date": "8 September 2026",
+  "assessor": "Previous assistant source-grounding spot checks; not external legal annotation",
+  "matched_document_sample": false,
+  "selection": "Existing graph node/edge stratified samples,15nodes+15edges per Qwen/Llama graph",
+  "counts": [
+    {
+      "extractor": "llama",
+      "item_type": "edge",
+      "verdict": "error",
+      "n": 4
+    },
+    {
+      "extractor": "llama",
+      "item_type": "edge",
+      "verdict": "supported",
+      "n": 9
+    },
+    {
+      "extractor": "llama",
+      "item_type": "edge",
+      "verdict": "uncertain",
+      "n": 2
+    },
+    {
+      "extractor": "llama",
+      "item_type": "node",
+      "verdict": "error",
+      "n": 2
+    },
+    {
+      "extractor": "llama",
+      "item_type": "node",
+      "verdict": "supported",
+      "n": 10
+    },
+    {
+      "extractor": "llama",
+      "item_type": "node",
+      "verdict": "uncertain",
+      "n": 3
+    },
+    {
+      "extractor": "qwen",
+      "item_type": "edge",
+      "verdict": "error",
+      "n": 3
+    },
+    {
+      "extractor": "qwen",
+      "item_type": "edge",
+      "verdict": "supported",
+      "n": 9
+    },
+    {
+      "extractor": "qwen",
+      "item_type": "edge",
+      "verdict": "uncertain",
+      "n": 3
+    },
+    {
+      "extractor": "qwen",
+      "item_type": "node",
+      "verdict": "error",
+      "n": 3
+    },
+    {
+      "extractor": "qwen",
+      "item_type": "node",
+      "verdict": "supported",
+      "n": 10
+    },
+    {
+      "extractor": "qwen",
+      "item_type": "node",
+      "verdict": "uncertain",
+      "n": 2
+    }
+  ],
+  "sources_sha256": {
+    "analysis/quality_review_protocol.md": "6fd4210e8dbb6e527ae039d241af864f48190354e1c00fe6df380838862763b3",
+    "analysis/quality_review_selection_20260908.json": "d53cf49b9f96f10ae7d2406a3da8b32007f96a6fbcacfb8314029436528441a7",
+    "analysis/quality_review_verdicts.csv": "5f8451361fe980e2e4eabf4324750233cb491ee383d331cf982ff9011ea6eda8",
+    "analysis/quality_review_summary.json": "00002852b798bce4549492ff6a91a991426a27ebe6fa1bef6f00b36c228a9a8e"
+  },
+  "limits": "Do not pool these graph-item judgements with the new matched Housing document assessments, or extrapolate either sample to wholegraph population rates."
+}
