@@ -1,0 +1,116 @@
+{
+  "median_changes": {
+    "mbe": {
+      "writer": {
+        "pairs": 672,
+        "median_absolute_change_pp": 3.64
+      },
+      "extractor": {
+        "pairs": 224,
+        "median_absolute_change_pp": 0.84
+      }
+    },
+    "housing": {
+      "writer": {
+        "pairs": 672,
+        "median_absolute_change_pp": 0.74
+      },
+      "extractor": {
+        "pairs": 224,
+        "median_absolute_change_pp": 0.69
+      }
+    }
+  },
+  "mbe_gemma27_reranked_10": {
+    "methods": [
+      "terra_kg on Qwen extraction",
+      "qwen3_dense"
+    ],
+    "questions_per_arm": 1071,
+    "passages_delivered_per_question_per_arm": 10,
+    "truncated_prompts": {
+      "graph": 0,
+      "dense": 0
+    },
+    "prompt_check": "Original prompt records confirmed complete delivery in this one setting. Public per-question membership records match those lists. Restricted prompt texts are withheld.",
+    "reference_groups": {
+      "neither_hit": {
+        "questions": 763,
+        "KG_correct": 484,
+        "dense_correct": 435,
+        "KG_only_correct": 91,
+        "dense_only_correct": 42,
+        "net_correct": 49
+      },
+      "dense_only_hit": {
+        "questions": 134,
+        "KG_correct": 93,
+        "dense_correct": 90,
+        "KG_only_correct": 16,
+        "dense_only_correct": 13,
+        "net_correct": 3
+      },
+      "KG_only_hit": {
+        "questions": 58,
+        "KG_correct": 46,
+        "dense_correct": 42,
+        "KG_only_correct": 8,
+        "dense_only_correct": 4,
+        "net_correct": 4
+      },
+      "both_hit": {
+        "questions": 116,
+        "KG_correct": 84,
+        "dense_correct": 83,
+        "KG_only_correct": 6,
+        "dense_only_correct": 5,
+        "net_correct": 1
+      }
+    },
+    "neither_hit_by_no_retrieval": {
+      "no_retrieval_correct": {
+        "questions": 432,
+        "KG_correct": 369,
+        "dense_correct": 341,
+        "KG_only_correct": 45,
+        "dense_only_correct": 17,
+        "net_correct": 28
+      },
+      "no_retrieval_wrong": {
+        "questions": 331,
+        "KG_correct": 115,
+        "dense_correct": 94,
+        "KG_only_correct": 46,
+        "dense_only_correct": 25,
+        "net_correct": 21
+      }
+    }
+  },
+  "mbe_terra_option_phrases": {
+    "writer": "terra_kg",
+    "questions": 1071,
+    "criterion": "A complete scored CONTAINS literal with at least two word tokens appears in exactly one available choice and nowhere in the facts or stem. Case and whitespace are normalised, punctuation is retained, and the whole phrase must have word boundaries. Separate phrases may identify different choices.",
+    "questions_by_number_of_options_matched": {
+      "0": 477,
+      "1": 389,
+      "2": 167,
+      "3": 33,
+      "4": 5
+    },
+    "questions_with_any_qualifying_phrase": 594,
+    "sole_option_correct": 213,
+    "sole_option_distractor": 176
+  },
+  "housing_gemma12_reranked_10": {
+    "mistral_kg": {
+      "yes_correct": 741,
+      "no_correct": 2691,
+      "correct": 3432
+    },
+    "qwen3_dense": {
+      "yes_correct": 929,
+      "no_correct": 2305,
+      "correct": 3234
+    }
+  }
+}

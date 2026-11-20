@@ -30,5 +30,15 @@
     "no_conflicting_or_duplicate_question_inputs": true,
     "corpus_copy_byte_identical": true,
     "csv_json_round_trip": true
+  },
+  "excluded_source_labels_by_reason": {
+    "unresolved_gold": {
+      "Yes": 913,
+      "No": 1347
+    },
+    "conflicting_answers": {
+      "No": 6,
+      "Yes": 3
+    }
   }
 }

@@ -1,6 +1,6 @@
 # Legal retrieval review materials
 
-This supplement supports verification of the reported legal retrieval and answer results. Both datasets use ordinary answer accuracy. Everything in the default check runs offline on saved outcomes.
+This supplement supports verification of the reported legal retrieval and answer results. The 20 November 2026 revision extends the 18 November release. Both datasets use ordinary answer accuracy. The default check runs offline on saved outcomes.
 
 ## Verify the results
 
@@ -12,7 +12,14 @@ python verify_bundle.py
 
 The arithmetic was checked with Python 3.11 and NumPy 1.26.4. The command prints a JSON receipt with status `PASS`. It checks every data file and the verifier against the integrity manifest. The manifest itself is excluded from its own hash. Record the ZIP hash when acquiring the archive. The default command only reads files and performs deterministic arithmetic.
 
-The verifier recomputes all 1,260 fixed-stage or reference-condition totals from correctness indicators, all 1,792 graph–baseline differences and discordant-pair counts, both Holm adjustments from the saved raw values, and all 630 HousingQA class summaries. It checks the selected comparisons against each answer model's no-retrieval baseline. It also verifies query coverage, checksums and the use of scoring relationships. Raw Monte Carlo probabilities and bootstrap intervals refer to the saved runs. An **optional** statistical replay is available with `python statistics/reproduce_statistics.py`; it needs more memory and time. The normal check does not run this replay or perform inference, query generation or retrieval.
+The verifier recomputes all 1,260 accuracy totals, 1,792 graph–baseline contrasts, both Holm adjustments and 630 HousingQA class summaries. It also checks the 16 four-writer summary rows, four median absolute changes, the MBE reference-hit and no-retrieval breakdowns, and the HousingQA yes/no comparison. It verifies query coverage, checksums and relationships used in scoring. The raw Monte Carlo probabilities and bootstrap intervals are from the saved runs. An optional statistical replay is available with `python statistics/reproduce_statistics.py`.
+
+## Four writers and the highlighted answer comparisons
+
+- [Writer comparisons](review_diagnostics/writer_comparisons.csv) counts higher, tied and lower ordinary accuracy for each writer against each baseline at matched stage, answerer and depth. Every row covers 112 settings including both extractors.
+- [Answer evidence](review_diagnostics/answer_evidence.json) gives the median changes across every pair of writers and across the two extractors, the MBE answer transitions by annotated-passage presence, and the HousingQA yes/no counts. The MBE example is Gemma 3 27B with ten reranked passages from Terra on Qwen-extracted records or from Qwen dense. The HousingQA example is Gemma 3 12B with ten reranked passages from Mistral on Llama-extracted records or from Qwen dense.
+- The MBE option-phrase counts and confirmation of complete prompt delivery come from an audit of restricted original queries and prompt records. The release includes the matching rule and aggregate results. The public verifier reproduces the answer transitions from saved correctness indicators and reference-membership flags, and checks the arithmetic of the option counts. Independently checking individual phrases or delivered prompt texts requires the restricted originals.
+- [Raw-passage tie sensitivity](raw_cues/tie_sensitivity_summary.csv) includes identifier order, corpus order and expected Hit@10 under uniform tie-breaking. The raw-passage QA control selected writers using the historical corpus ordering and supplied passages using identifier ordering.
 
 ## What the files contain
 
@@ -20,7 +27,7 @@ The verifier recomputes all 1,260 fixed-stage or reference-condition totals from
 | --- | --- |
 | `statistics/` | Correctness matrices, question IDs, cluster groups, condition definitions, accuracy and paired tests. HousingQA includes yes/no labels for its class diagnostics. The MBE matrix contains a binary indicator of correctness for each item and configuration. |
 | `queries/` | The complete text of all **18,336** HousingQA query instances. For all **4,284** MBE instances, a program structure preserves Cypher operations, schema fields, branch logic and numeric weights. Each distinct string literal within that query is replaced consistently with a placeholder. Non-schema variable names are generalised. The original full-query SHA-256 fingerprints let an authorised holder check exact identity. The masked MBE structures cannot reproduce historical rankings on their own. An executable-syntax example from the fixed MBE prompt is in `pipeline/prompts/mbe_v1.json`. |
-| `review_diagnostics/` | HousingQA class counts and predicted yes rates, figure values, source-category counts, selected fixed-stage effect summaries, requested-reference hit strata and list lengths. All no-retrieval comparisons and hit-stratified summaries here are descriptive. The MBE joint-miss example concerns one answerer, extractor, stage and depth, and uses the requested passage list before possible token trimming. |
+| `review_diagnostics/` | HousingQA class counts and predicted yes rates, figure values, source-category counts, selected fixed-stage effect summaries, requested-reference hit strata and list lengths. All no-retrieval comparisons and hit-stratified summaries here are descriptive. The historical strata use requested passage lists. For the highlighted reranked MBE example, the prompt audit confirmed that all ten passages on each list reached the answerer. |
 | `datasets/` | The two evaluated cohorts' definitions. The HousingQA mapping contains all public question IDs, question-text groups, jurisdictions, benchmark labels and corrected statute IDs for the retained cohort. Its rows link to the upstream text through the original identifiers. |
 | `pipeline/` | Extraction instructions and schema source, query-generation prompts, and selected code snapshots for inspecting validation, recovery and graph construction. The scripts document the study's implementation. Rebuilding a full corpus/index requires upstream data, dependencies, model access and appropriate compute. |
 | `generation_audit/` | Counts of returned responses, static validator rejections and execution recovery, plus recorded partial extraction cost. The 8.23 H100 allocation-hours cover the 66,906-passage HousingQA Llama completion only. |

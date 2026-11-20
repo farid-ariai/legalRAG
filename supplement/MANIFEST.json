@@ -1,22 +1,23 @@
 {
   "format": 1,
-  "date": "18 November 2026",
+  "date": "20 November 2026",
+  "base_date": "18 November 2026",
   "files": {
     "DATA_ACCESS.md": {
       "sha256": "0493e373ce43719aee7803a74f50cf12c43f51329f689f174b03f2d45d0af1cc",
       "bytes": 3307
     },
     "README.md": {
-      "sha256": "90109f194b03ced9dcf18d989f34bbf68b51f6bd7bcc44e3584a7ba0a6b6f854",
-      "bytes": 4882
+      "sha256": "f587c12f3393c94aebe732d3e819f6d81507ff37eaf23d0d2f9c9a722c597282",
+      "bytes": 6337
     },
     "datasets/housing_cohort.csv": {
       "sha256": "4ae4d6a57fbc78e7b8d5aaf262d021cae922422a11acbb3f70aa8521688cb95a",
       "bytes": 174247
     },
     "datasets/housing_selection.json": {
-      "sha256": "0e775b14603ccca642d922ce8be0d987fffdc4b6cd39d7402392b37e7ed9dbd9",
-      "bytes": 1185
+      "sha256": "a7a7a2342fb87d284d9c900d176962a0a8fa83bb6c7531291a8ccaa2c4d2c492",
+      "bytes": 1362
     },
     "datasets/mbe_partitions.json": {
       "sha256": "556c4c4363c2113e4b9f7104cccdd1f4e0baf3b1ed3d74f2725030215ef77eeb",
@@ -63,8 +64,8 @@
       "bytes": 259
     },
     "generation_audit/extraction_cost_summary.json": {
-      "sha256": "a492703de868dc1dd041bbff45b1c38e58219137c58e18aa170cef6bc7ac7c18",
-      "bytes": 1330
+      "sha256": "37642771980ed736c8b04f5bf56dd1911dbbc606867d1b0e4d741b72f5758ef5",
+      "bytes": 2023
     },
     "generation_audit/query_generation_summary.csv": {
       "sha256": "4543859c37fae5a97447bc5ce1d34fef93988b85e7160b4f1d8e25054b895ab5",
@@ -186,6 +187,10 @@
       "sha256": "4c61183293db80a0acefb7fd56d1e9eb24ce61f392fce4bbc2a2c01345713211",
       "bytes": 2662
     },
+    "review_diagnostics/answer_evidence.json": {
+      "sha256": "0486cf5a9212922582478a1d29d90fb89470c546175f58419d003c21ae587be4",
+      "bytes": 3103
+    },
     "review_diagnostics/candidate_list_lengths.csv": {
       "sha256": "9fd67795030845f50246f6ee7ed9df76007be5a542389df7f256f9be57c3193f",
       "bytes": 1310
@@ -234,6 +239,10 @@
       "sha256": "39325fb1e8abc71c37f4796c3fc80d8445c78183ada3297b70a8db5eeb90c250",
       "bytes": 4698
     },
+    "review_diagnostics/writer_comparisons.csv": {
+      "sha256": "01deb2b70f8cda0be3fe2792ebfdae3e1781b55b944c0401db95a7341dab84d6",
+      "bytes": 638
+    },
     "statistics/all_fixed_stage_accuracy.csv": {
       "sha256": "560f4fdf7d6dde9e26e3c3877c122ecb14caa352bb8f6ffe540af81a87c08b83",
       "bytes": 106719
@@ -271,8 +280,8 @@
       "bytes": 394569
     },
     "verify_bundle.py": {
-      "sha256": "2ade4e14876c223a04c8267b9640d1287e0fb4718e32f7cd366be47c4ebcc545",
-      "bytes": 14022
+      "sha256": "31a0332c2c4c2f7ca343c824037a14cff3bb4e01aba0aaf12cf32841844fb4b8",
+      "bytes": 17783
     }
   }
 }

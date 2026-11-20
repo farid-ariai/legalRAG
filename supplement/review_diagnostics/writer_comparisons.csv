@@ -1,0 +1,17 @@
+dataset,writer,comparator,settings,higher,tied,lower
+housing,gemma4_kg,bm25,112,70,2,40
+housing,gemma4_kg,qwen3_dense,112,102,0,10
+housing,mistral_kg,bm25,112,93,3,16
+housing,mistral_kg,qwen3_dense,112,103,0,9
+housing,qwen38_kg,bm25,112,72,0,40
+housing,qwen38_kg,qwen3_dense,112,105,0,7
+housing,terra_kg,bm25,112,63,0,49
+housing,terra_kg,qwen3_dense,112,105,0,7
+mbe,gemma4_kg,bm25,112,112,0,0
+mbe,gemma4_kg,qwen3_dense,112,75,1,36
+mbe,mistral_kg,bm25,112,38,4,70
+mbe,mistral_kg,qwen3_dense,112,2,0,110
+mbe,qwen38_kg,bm25,112,111,1,0
+mbe,qwen38_kg,qwen3_dense,112,50,3,59
+mbe,terra_kg,bm25,112,112,0,0
+mbe,terra_kg,qwen3_dense,112,112,0,0

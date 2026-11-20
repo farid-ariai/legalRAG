@@ -5,6 +5,7 @@ import hashlib
 import json
 import statistics
 from collections import Counter, defaultdict
+from itertools import combinations
 from pathlib import Path
 
 import numpy as np
@@ -75,6 +76,40 @@ def verify_holm(family, field):
         assert abs(previous - float(row[field])) < 1e-12
 
 
+def verify_writer_summaries(totals):
+    comparisons = defaultdict(Counter)
+    frames = defaultdict(dict)
+    for (dataset, model, extractor, writer, stage, depth), correct in totals.items():
+        if writer not in SYSTEMS:
+            continue
+        frames[dataset, model, stage, depth][writer, extractor] = correct
+        for comparator in ['qwen3_dense', 'bm25']:
+            reference = totals[dataset, model, 'not_applicable', comparator, stage, depth]
+            outcome = 'higher' if correct > reference else 'lower' if correct < reference else 'tied'
+            comparisons[dataset, writer, comparator][outcome] += 1
+    result = rows('review_diagnostics/writer_comparisons.csv')
+    assert len(result) == len(comparisons) == 16
+    for row in result:
+        counts = comparisons.pop((row['dataset'], row['writer'], row['comparator']))
+        assert sum(counts.values()) == int(row['settings']) == 112
+        assert all(counts[key] == int(row[key]) for key in ['higher', 'tied', 'lower'])
+
+    differences = defaultdict(list)
+    for (dataset, model, stage, depth), scores in frames.items():
+        assert len(scores) == 8
+        for extractor in ['qwen', 'llama']:
+            for a, b in combinations(SYSTEMS, 2):
+                differences[dataset, 'writer'].append(abs(scores[a, extractor] - scores[b, extractor]))
+        for writer in SYSTEMS:
+            differences[dataset, 'extractor'].append(abs(scores[writer, 'qwen'] - scores[writer, 'llama']))
+    medians = load('review_diagnostics/answer_evidence.json')['median_changes']
+    for (dataset, component), values in differences.items():
+        saved = medians[dataset][component]
+        questions = 1071 if dataset == 'mbe' else 4584
+        assert len(values) == saved['pairs'] == (672 if component == 'writer' else 224)
+        assert round(100 * statistics.median(values) / questions, 2) == saved['median_absolute_change_pp']
+
+
 def verify_contrasts(data, positions, totals):
     contrasts = rows('statistics/paired_KG_vs_baselines.csv')
     assert len(contrasts) == 1792
@@ -136,11 +171,16 @@ def verify_housing(data, positions, totals):
     diagnostics = rows('review_diagnostics/housing_class_diagnostics.csv')
     assert len(diagnostics) == 630 and {key(r) for r in diagnostics} == set(positions['housing'])
     values = data['housing_values']
+    example = load('review_diagnostics/answer_evidence.json')['housing_gemma12_reranked_10']
     for r in diagnostics:
         v = values[:, positions['housing'][key(r)]]
         yes = int(v[labels == 'Yes'].sum())
         no = int(v[labels == 'No'].sum())
         assert (yes, no) == (int(r['yes_correct']), int(r['no_correct']))
+        if (r['model'], r['stage'], r['k']) == ('gemma3_12b_it', 'reranked', '10') and (
+            (r['method'], r['extractor']) in [('mistral_kg', 'llama'), ('qwen3_dense', 'not_applicable')]
+        ):
+            assert example.pop(r['method']) == {'yes_correct': yes, 'no_correct': no, 'correct': yes + no}
         predicted_yes = yes + 3086 - no - int(r['unparsed_no'])
         assert predicted_yes == int(r['predicted_yes'])
         assert predicted_yes + int(r['predicted_no']) + int(r['unparsed']) == 4584
@@ -150,6 +190,7 @@ def verify_housing(data, positions, totals):
             assert abs(float(r[col]) - expected) < 1e-10
         baseline = totals[('housing', r['model'], 'not_applicable', 'no_retrieval', 'parent', 0)]
         assert abs(float(r['delta_no_retrieval_pp']) - 100 * (yes + no - baseline) / 4584) < 1e-10
+    assert not example
 
 
 def verify_queries(data):
@@ -205,15 +246,33 @@ def verify_mbe_diagnostics(data, positions):
     labels = {(0, 0): 'neither_hit', (1, 0): 'KG_only_hit', (0, 1): 'dense_only_hit', (1, 1): 'both_hit'}
     kg = positions['mbe'][('gemma3_27b_it', 'qwen', 'terra_kg', 'reranked', 10)]
     dense = positions['mbe'][('gemma3_27b_it', 'not_applicable', 'qwen3_dense', 'reranked', 10)]
+    prior = positions['mbe'][('gemma3_27b_it', 'not_applicable', 'no_retrieval', 'parent', 0)]
     by_stratum = defaultdict(Counter)
-    for q, pair in zip(data['mbe_ids'], data['mbe_values'][:, [kg, dense]]):
-        a, b = map(int, pair)
-        totals = by_stratum[labels[lookup[q]]]
-        totals.update({'questions': 1, 'KG_correct': a, 'dense_correct': b, 'net_correct': a-b,
-                       'KG_only_correct': int(a > b), 'dense_only_correct': int(b > a)})
+    neither_by_prior = defaultdict(Counter)
+    for q, outcomes in zip(data['mbe_ids'], data['mbe_values'][:, [kg, dense, prior]]):
+        a, b, without_passages = map(int, outcomes)
+        stratum = labels[lookup[q]]
+        counts = {'questions': 1, 'KG_correct': a, 'dense_correct': b, 'net_correct': a-b,
+                  'KG_only_correct': int(a > b), 'dense_only_correct': int(b > a)}
+        by_stratum[stratum].update(counts)
+        if stratum == 'neither_hit':
+            group = 'no_retrieval_correct' if without_passages else 'no_retrieval_wrong'
+            neither_by_prior[group].update(counts)
     expected = saved['mbe_gemma27_k10_terra_qwen_vs_dense_by_reference_in_requested_lists']
     assert dict(by_stratum) == expected
     assert by_stratum['neither_hit']['net_correct'] == 49 and sum(v['net_correct'] for v in by_stratum.values()) == 57
+    evidence = load('review_diagnostics/answer_evidence.json')
+    example = evidence['mbe_gemma27_reranked_10']
+    assert example['questions_per_arm'] == len(hits)
+    assert example['reference_groups'] == dict(by_stratum)
+    assert example['neither_hit_by_no_retrieval'] == dict(neither_by_prior)
+    # The lexical and prompt-delivery audits require source texts outside this review copy.
+    phrases = evidence['mbe_terra_option_phrases']
+    bins = phrases['questions_by_number_of_options_matched']
+    assert set(bins) == {'0', '1', '2', '3', '4'} and min(bins.values()) >= 0
+    assert sum(bins.values()) == phrases['questions'] == len(hits)
+    assert phrases['questions_with_any_qualifying_phrase'] == len(hits) - bins['0']
+    assert phrases['sole_option_correct'] + phrases['sole_option_distractor'] == bins['1']
 
 
 def verify_controls(data):
@@ -243,6 +302,7 @@ def main():
     files = check_manifest()
     with np.load(ROOT / 'statistics/validated_inputs.npz', allow_pickle=False) as data:
         positions, totals = verify_accuracy(data)
+        verify_writer_summaries(totals)
         significant = verify_contrasts(data, positions, totals)
         verify_housing(data, positions, totals)
         verify_queries(data)
@@ -250,6 +310,8 @@ def main():
         verify_controls(data)
     print(json.dumps({'status': 'PASS', 'manifest_members': files, 'fixed_conditions': 1260,
                       'paired_contrasts': 1792, 'housing_class_conditions': 630,
+                      'writer_comparison_rows': 16, 'component_change_medians': 4,
+                      'mbe_neither_hit_no_context_strata': 2,
                       'housing_full_queries': 18336, 'mbe_redacted_query_structures': 4284,
                       'significant_selected_gains_then_above_below_no_retrieval': significant,
                       'new_model_calls': 0, 'new_retrieval_runs': 0, 'new_randomisation_draws': 0}))

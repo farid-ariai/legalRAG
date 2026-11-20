@@ -20,5 +20,24 @@
     "A cancelled parent job has a longer cleanup batch step; raw accounting is retained and not silently combined with parent durations.",
     "The original 1,770,497 Housing Llama records and the other three extraction sources lack complete source-linked cost telemetry in this audit.",
     "This is a partial-stage measurement, not total extraction cost and not a basis for extrapolating full-corpus cost."
-  ]
+  ],
+  "housing_llama_lineage": {
+    "historical_jurisdiction_files": 48,
+    "model": "NousResearch/Meta-Llama-3.1-8B-Instruct",
+    "shared_protocol": "The completion reused the historical prompt builder, schema and parser. The archived settings are defaults. The historical rows contain no per-request decoding settings.",
+    "historical_runtime": "vLLM 0.14.0",
+    "completion_runtime": "vLLM 0.27.1",
+    "archived_defaults": {
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_model_len": 12288,
+      "max_tokens": 2560,
+      "retry_max_tokens": 5120
+    },
+    "extended_completion_retries": {
+      "items": 3,
+      "max_model_len": 24576,
+      "max_tokens": 16384
+    }
+  }
 }
