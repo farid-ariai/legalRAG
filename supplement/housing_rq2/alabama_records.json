@@ -1,0 +1,185 @@
+{
+  "question_id": "0",
+  "question": "Is there a state/territory law regulating residential evictions?",
+  "jurisdiction": "Alabama",
+  "extractor": "Qwen 2.5 7B Instruct",
+  "reference_statute_id": "431263",
+  "logged_best_rule_sha256": {
+    "mistral_kg": {
+      "431263": "874ce932bafa2d6736c5e25e1ceeb438f9709ed48eba48f32dec85c0eb9d0229",
+      "431286": "2934c67335dad7ced276d125421e9ca0cec4d8bfa01353bd4d400ebd989161e9"
+    },
+    "terra_kg": {
+      "431286": "44355204a6e6b7da1a268e2e348bacfa3deca1d315ee44aad164d4b06ad2b75c",
+      "431263": "874ce932bafa2d6736c5e25e1ceeb438f9709ed48eba48f32dec85c0eb9d0229"
+    }
+  },
+  "statutes": [
+    {
+      "statute_id": "431263",
+      "citation": "AL Code § 35-9A-141 (2021)",
+      "provisions": [
+        {
+          "uid": "431263:rule:1",
+          "name": "action",
+          "rule": "An 'action' includes recoupment, counterclaim, set-off, suit in equity, and any other proceeding in which rights are determined, including an action for possession.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:2",
+          "name": "building and housing codes",
+          "rule": "'Building and housing codes' include any law, ordinance, or governmental regulation concerning fitness for habitation, or the construction, maintenance, operation, occupancy, use, or appearance of any premises or dwelling unit.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:3",
+          "name": "day",
+          "rule": "'Day' means calendar day, notwithstanding Rule 6 of the Alabama Rules of Civil Procedure; however, in any case where the application of a time period in this chapter consisting of a specific number of days results in the last day of that time period falling on a weekend or an official holiday, then the last day of that time period shall be considered the next official business day when the court is open.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:4",
+          "name": "dwelling unit",
+          "rule": "'Dwelling unit' means a structure or the part of a structure, including a manufactured home, that is rented as a home, residence, or sleeping place by one or more persons.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:5",
+          "name": "eviction",
+          "rule": "'Eviction' means a civil action filed as a remedy, where a tenant has lawfully taken possession of a premises and fails or refuses, after the termination of the possessory interest of the tenant, to deliver possession of the premises to anyone lawfully entitled or to his or her agent or attorney.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:6",
+          "name": "good faith",
+          "rule": "'Good faith' means honesty in fact in the conduct of the transaction concerned.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:7",
+          "name": "landlord",
+          "rule": "'Landlord' means the owner, lessor, or sublessor of the dwelling unit or the building of which it is a part, and it also means a manager of the premises.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:8",
+          "name": "organization",
+          "rule": "'Organization' includes a corporation, government, governmental subdivision or agency, business trust, estate, trust, partnership or association, two or more persons having a joint or common interest, and any business entity.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:9",
+          "name": "owner",
+          "rule": "'Owner' means one or more persons, jointly or severally, in whom is vested (i) all or part of the legal title to property or (ii) all or part of the beneficial ownership and a right to present use and enjoyment of the premises. The term includes a mortgagee only when in possession.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:10",
+          "name": "person",
+          "rule": "'Person' includes an individual, individuals, or organization.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:11",
+          "name": "premises",
+          "rule": "'Premises' means a dwelling unit and the structure of which it is a part and facilities and appurtenances therein and grounds, areas, and facilities held out for the use of tenants generally or whose use is promised by the rental agreement to the tenant.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:12",
+          "name": "rent",
+          "rule": "'Rent' means all payments to be made to or for the benefit of the landlord under the rental agreement.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:13",
+          "name": "rental agreement",
+          "rule": "'Rental agreement' means all agreements, written or oral, and valid rules and regulations adopted under Section 35-9A-302 embodying the terms and conditions concerning the use and occupancy of a dwelling unit and premises.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:14",
+          "name": "roomer",
+          "rule": "'Roomer' means a person occupying a dwelling unit that does not include a toilet, a refrigerator, stove, kitchen sink, and either a bath tub or a shower, all provided by the landlord, and where one or more of these facilities are used in common by occupants in the structure.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:15",
+          "name": "single family residence",
+          "rule": "'Single family residence' means a structure maintained and used as a single dwelling unit. Notwithstanding that a dwelling unit shares one or more walls with another dwelling unit, it is a single family residence if it has direct access to a street or thoroughfare and shares neither heating facilities, hot water equipment, nor any other essential facility or service with any other dwelling unit.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        },
+        {
+          "uid": "431263:rule:16",
+          "name": "tenant",
+          "rule": "'Tenant' means a person entitled under a rental agreement to occupy a dwelling unit to the exclusion of others.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Definition"
+        }
+      ]
+    },
+    {
+      "statute_id": "431286",
+      "citation": "AL Code § 35-9A-461 (2021)",
+      "provisions": [
+        {
+          "uid": "431286:rule:1",
+          "name": "Eviction Proceedings",
+          "rule": "Eviction actions are governed by the Alabama Rules of Civil Procedure and the Alabama Rules of Appellate Procedure, except as modified by this chapter.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Procedure or Process"
+        },
+        {
+          "uid": "431286:rule:2",
+          "name": "Jurisdiction and Venue",
+          "rule": "District courts and circuit courts have jurisdiction over eviction actions, and venue lies in the county where the leased property is located. Eviction actions are entitled to precedence in scheduling over all other civil cases.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Procedure or Process"
+        },
+        {
+          "uid": "431286:rule:3",
+          "name": "Service of Process",
+          "rule": "Service of process is made in accordance with the Alabama Rules of Civil Procedure. If personal service is not possible, service may be made by delivering the notice to a person sui juris residing on the premises, or by posting the notice on the door of the premises and mailing a copy to the defendant.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Procedure or Process"
+        },
+        {
+          "uid": "431286:rule:4",
+          "name": "Appeals",
+          "rule": "Parties may appeal from an eviction judgment entered by a district court to the circuit court within seven days after the entry thereof. The filing of a timely post-judgment motion suspends the running of the time for filing a notice of appeal. The full time for filing a notice of appeal is computed from the date of the entry in the civil docket of an order granting or denying such motion, or the date of the denial of such motion by operation of law. An appeal by a tenant does not prevent the issuance of a writ of restitution or possession unless the tenant pays all rents properly payable under the lease.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Procedure or Process"
+        },
+        {
+          "uid": "431286:rule:5",
+          "name": "Writ of Possession",
+          "rule": "If an eviction judgment is in favor of the landlord, a writ of possession shall issue upon application by the landlord. The automatic stay on the issuance of the writ of possession or restitution is for a period of seven days. If a tenant re-enters the premises without just cause, the tenant can be held in contempt and successive writs may issue as necessary to effectuate the eviction judgment.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Procedure or Process"
+        },
+        {
+          "uid": "431286:rule:6",
+          "name": "Restoration of Possession",
+          "rule": "If the landlord is placed in possession under a writ of restitution or possession, and on appeal the judgment is reversed and one is entered for the tenant or the proceeding on appeal is quashed or dismissed, the circuit court may award a writ of restitution or possession to restore the tenant to possession as against the landlord, but not as against a third party. The issuance of the writ rests in the discretion of the appellate court, and the circuit court may direct writs of restitution or possession to be issued by the trial court when, in the judgment of the circuit court, such writ is proper or necessary.",
+          "area": "Landlord-Tenant and Housing",
+          "type": "Procedure or Process"
+        }
+      ]
+    }
+  ]
+}

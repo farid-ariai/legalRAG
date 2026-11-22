@@ -1,6 +1,6 @@
 # Legal retrieval review materials
 
-This supplement supports verification of the reported legal retrieval and answer results. The 20 November 2026 revision extends the 18 November release. Both datasets use ordinary answer accuracy. The default check runs offline on saved outcomes.
+This supplement supports verification of the reported legal retrieval and answer results. The 22 November 2026 revision adds the HousingQA rank-one comparison and two-writer Alabama score check to the 20 November release. Both datasets use ordinary answer accuracy. The default check runs offline on saved outcomes.
 
 ## Verify the results
 
@@ -13,6 +13,16 @@ python verify_bundle.py
 The arithmetic was checked with Python 3.11 and NumPy 1.26.4. The command prints a JSON receipt with status `PASS`. It checks every data file and the verifier against the integrity manifest. The manifest itself is excluded from its own hash. Record the ZIP hash when acquiring the archive. The default command only reads files and performs deterministic arithmetic.
 
 The verifier recomputes all 1,260 accuracy totals, 1,792 graph–baseline contrasts, both Holm adjustments and 630 HousingQA class summaries. It also checks the 16 four-writer summary rows, four median absolute changes, the MBE reference-hit and no-retrieval breakdowns, and the HousingQA yes/no comparison. It verifies query coverage, checksums and relationships used in scoring. The raw Monte Carlo probabilities and bootstrap intervals are from the saved runs. An optional statistical replay is available with `python statistics/reproduce_statistics.py`.
+
+## HousingQA query writers at rank one
+
+From the supplement root, run `python housing_rq2/verify.py` for just this check. It needs only the Python standard library. The full verifier also runs it.
+
+[The first two hits](housing_rq2/top_two.csv) give the original first- and second-ranked statute identifiers and scores for each of four query writers and each of 4,584 questions (18,336 rows). These are initial rankings on the Qwen-extracted graph, restricted to the question's jurisdiction. Each row includes its query fingerprint and the number of statutes tied at the top in the archived full-corpus replay. The checker joins the rows to the released cohort and queries, and verifies that a positive score gap agrees with a tie count of one.
+
+At least two writers each have a unique top statute on 3,617 questions. They choose different statutes on **2,866 of all 4,584 questions (62.52%)**. On 751 questions the writers with unique winners agree, and on 967 fewer than two writers have a unique winner. Each question contributes once. Writers with a tied first place do not establish a disagreement.
+
+[The Alabama records](housing_rq2/alabama_records.json) contain the scored fields of all 16 Qwen-extracted provisions in §35-9A-141 and all six in §35-9A-461 for HousingQA question 0. The checker reads the weighted conditions directly from the released Mistral and Terra query texts, evaluates each provision and takes the maximum within each statute. It prints the winning provision, its matched conditions and their points, and checks the scores, order and fingerprints of the winning rule texts against the saved graph results. In statute order §141 / §461, Mistral scores 80 / 70 and Terra scores 52 / 60. Both Terra provisions earn 40 phrase points and 12 legal-area points. Only the proceedings provision earns the eight-point type bonus. This local example and the cohort count use archived data and require no graph server or model calls. [Offline checker](housing_rq2/verify.py)
 
 ## Four writers and the highlighted answer comparisons
 

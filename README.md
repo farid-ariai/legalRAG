@@ -1,9 +1,10 @@
 # From legal text to queryable graphs
 
-These review materials contain the saved results, queries and verification code for the MBE and HousingQA experiments. The 20 November 2026 revision extends the 18 November supplement. The [supplement guide](supplement/README.md) describes the files and the scope of the checks.
+These review materials contain the saved results, queries and verification code for the MBE and HousingQA experiments. The 22 November 2026 revision adds the HousingQA RQ2 finding and worked Alabama comparison to the 20 November supplement. The [supplement guide](supplement/README.md) describes the files and the scope of the checks.
 
 | To inspect | Open |
 | --- | --- |
+| HousingQA writers choosing different unique top statutes and the Alabama score reversal | [Saved first and second hits](supplement/housing_rq2/top_two.csv), [Alabama provisions](supplement/housing_rq2/alabama_records.json) and [offline check](supplement/housing_rq2/verify.py) |
 | Four query writers against Qwen dense and BM25 | [Higher, tied and lower accuracy at matched settings](supplement/review_diagnostics/writer_comparisons.csv) |
 | Writer and extractor changes, MBE questions where neither retriever found the reference, and the HousingQA yes/no comparison | [Aggregate counts and definitions](supplement/review_diagnostics/answer_evidence.json) |
 | Answer accuracy by model, stage and retrieval depth | [Full results](supplement/statistics/all_fixed_stage_accuracy.csv) |
@@ -20,6 +21,6 @@ Download the repository as a ZIP and extract it. Open the `supplement` directory
 python verify_bundle.py
 ```
 
-The verifier checks 1,260 accuracy totals, 1,792 paired comparisons, 630 HousingQA class summaries, all 16 writer comparison rows and the MBE answer transitions. It also checks file integrity and query coverage.
+The verifier checks 1,260 accuracy totals, 1,792 paired comparisons, 630 HousingQA class summaries, all 16 writer comparison rows and the MBE answer transitions. It also verifies HousingQA’s 2,866/4,584 disagreement count and the Alabama Mistral and Terra scores. The focused command from the supplement directory is `python housing_rq2/verify.py` and needs only the Python standard library.
 
-The [standalone verification ZIP](ESWC2027_review_candidate_20261118.zip) contains the same 71 files as the browsable supplement. Its download link retains the 18 November filename. The enclosed manifest identifies the 20 November revision. Extract the ZIP and run the command from its top-level directory. The revised ZIP's SHA-256 digest is `8dd815b1e7460119125d0105a284a0472135111f5e707eb59ac6b9cc1e91a04b`.
+The [standalone verification ZIP](ESWC2027_review_candidate_20261118.zip) contains the same 74 files as the browsable supplement. Its download link retains the 18 November filename. The enclosed manifest identifies the 22 November revision. Extract the ZIP and run the command from its top-level directory. The revised ZIP's SHA-256 digest is `d360cdb034e0acdc2be4f186df952cff802dcec709d01ba889dd1e97a783ebe5`.

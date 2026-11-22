@@ -4,6 +4,8 @@ import csv
 import hashlib
 import json
 import statistics
+import subprocess
+import sys
 from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
@@ -308,10 +310,15 @@ def main():
         verify_queries(data)
         verify_mbe_diagnostics(data, positions)
         verify_controls(data)
+    rq2 = json.loads(subprocess.check_output([sys.executable, '-B', str(ROOT / 'housing_rq2/verify.py')], text=True))
+    assert rq2['status'] == 'PASS'
     print(json.dumps({'status': 'PASS', 'manifest_members': files, 'fixed_conditions': 1260,
                       'paired_contrasts': 1792, 'housing_class_conditions': 630,
                       'writer_comparison_rows': 16, 'component_change_medians': 4,
                       'mbe_neither_hit_no_context_strata': 2,
+                      'housing_rq2': rq2['housing_first_stage_qwen_extraction'],
+                      'alabama_scores': {w: {sid: t['total'] for sid, t in hits.items()}
+                                         for w, hits in rq2['alabama_scores'].items()},
                       'housing_full_queries': 18336, 'mbe_redacted_query_structures': 4284,
                       'significant_selected_gains_then_above_below_no_retrieval': significant,
                       'new_model_calls': 0, 'new_retrieval_runs': 0, 'new_randomisation_draws': 0}))

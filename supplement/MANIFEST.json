@@ -1,15 +1,15 @@
 {
   "format": 1,
-  "date": "20 November 2026",
-  "base_date": "18 November 2026",
+  "date": "22 November 2026",
+  "base_date": "20 November 2026",
   "files": {
     "DATA_ACCESS.md": {
-      "sha256": "0493e373ce43719aee7803a74f50cf12c43f51329f689f174b03f2d45d0af1cc",
-      "bytes": 3307
+      "sha256": "82f4c15e9c821a2d920439e52504c8f881df4b1881fa505017db157b96adc64d",
+      "bytes": 3613
     },
     "README.md": {
-      "sha256": "f587c12f3393c94aebe732d3e819f6d81507ff37eaf23d0d2f9c9a722c597282",
-      "bytes": 6337
+      "sha256": "001be92afd537ac682a781c53572306202822d2b4e242c71ba1d03ef126590cf",
+      "bytes": 8403
     },
     "datasets/housing_cohort.csv": {
       "sha256": "4ae4d6a57fbc78e7b8d5aaf262d021cae922422a11acbb3f70aa8521688cb95a",
@@ -70,6 +70,18 @@
     "generation_audit/query_generation_summary.csv": {
       "sha256": "4543859c37fae5a97447bc5ce1d34fef93988b85e7160b4f1d8e25054b895ab5",
       "bytes": 1309
+    },
+    "housing_rq2/alabama_records.json": {
+      "sha256": "9d6cf01a80cf19a33b931915b01992e701302edbd2a9e8d0b8682b11fd50d7bb",
+      "bytes": 10907
+    },
+    "housing_rq2/top_two.csv": {
+      "sha256": "eb60a31b0135e56bbcc1c54bd97785f8b74559cf8fa9d53e198f26dfa6ac2028",
+      "bytes": 1878936
+    },
+    "housing_rq2/verify.py": {
+      "sha256": "72c44554a5184cc4b30cb32dc6069d5b8a070ca3af513f126ae0f74d2d93c890",
+      "bytes": 7269
     },
     "pipeline/code/Structured_extraction.py": {
       "sha256": "0895f0a07b35d88506abc7181c4035eada33528381001de0ec466aa5fbda2daa",
@@ -280,8 +292,8 @@
       "bytes": 394569
     },
     "verify_bundle.py": {
-      "sha256": "31a0332c2c4c2f7ca343c824037a14cff3bb4e01aba0aaf12cf32841844fb4b8",
-      "bytes": 17783
+      "sha256": "55108921c5a9b515974c0ffb6c1107c07230e4cdc65f7dd413c31190f902faca",
+      "bytes": 18223
     }
   }
 }
