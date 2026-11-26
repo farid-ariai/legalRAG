@@ -10,11 +10,7 @@
     "n_gold_references": 9973,
     "n_gold_statutes": 672,
     "n_states": 47,
-    "n_question_groups": 225,
-    "answers": {
-      "No": 3086,
-      "Yes": 1498
-    }
+    "n_question_groups": 225
   },
   "policy": {
     "gold": "retain only whole questions with every reference verified",
@@ -30,15 +26,5 @@
     "no_conflicting_or_duplicate_question_inputs": true,
     "corpus_copy_byte_identical": true,
     "csv_json_round_trip": true
-  },
-  "excluded_source_labels_by_reason": {
-    "unresolved_gold": {
-      "Yes": 913,
-      "No": 1347
-    },
-    "conflicting_answers": {
-      "No": 6,
-      "Yes": 3
-    }
   }
 }

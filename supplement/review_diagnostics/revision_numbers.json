@@ -114,23 +114,6 @@
       }
     }
   },
-  "housing_gemma12_class_example": {
-    "no_retrieval": {
-      "correct": 3105,
-      "yes_correct": 20,
-      "no_correct": 3085
-    },
-    "qwen3_dense": {
-      "correct": 3234,
-      "yes_correct": 929,
-      "no_correct": 2305
-    },
-    "mistral_kg": {
-      "correct": 3432,
-      "yes_correct": 741,
-      "no_correct": 2691
-    }
-  },
   "mbe_gemma27_k10_terra_qwen_vs_dense_by_reference_in_requested_lists": {
     "neither_hit": {
       "questions": 763,

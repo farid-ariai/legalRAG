@@ -169,30 +169,6 @@ def verify_housing(data, positions, totals):
     labels = data['housing_gold']
     for q, group, label in zip(data['housing_ids'], data['housing_groups'], labels):
         assert index[q]['label'] == label and index[q]['question_template'] == group
-    assert dict(Counter(labels)) == {'Yes': 1498, 'No': 3086}
-    diagnostics = rows('review_diagnostics/housing_class_diagnostics.csv')
-    assert len(diagnostics) == 630 and {key(r) for r in diagnostics} == set(positions['housing'])
-    values = data['housing_values']
-    example = load('review_diagnostics/answer_evidence.json')['housing_gemma12_reranked_10']
-    for r in diagnostics:
-        v = values[:, positions['housing'][key(r)]]
-        yes = int(v[labels == 'Yes'].sum())
-        no = int(v[labels == 'No'].sum())
-        assert (yes, no) == (int(r['yes_correct']), int(r['no_correct']))
-        if (r['model'], r['stage'], r['k']) == ('gemma3_12b_it', 'reranked', '10') and (
-            (r['method'], r['extractor']) in [('mistral_kg', 'llama'), ('qwen3_dense', 'not_applicable')]
-        ):
-            assert example.pop(r['method']) == {'yes_correct': yes, 'no_correct': no, 'correct': yes + no}
-        predicted_yes = yes + 3086 - no - int(r['unparsed_no'])
-        assert predicted_yes == int(r['predicted_yes'])
-        assert predicted_yes + int(r['predicted_no']) + int(r['unparsed']) == 4584
-        assert int(r['unparsed']) == int(r['unparsed_yes']) + int(r['unparsed_no'])
-        for col, expected in [('yes_recall_percent', 100 * yes / 1498), ('no_recall_percent', 100 * no / 3086),
-                              ('yes_rate_percent', 100 * predicted_yes / 4584)]:
-            assert abs(float(r[col]) - expected) < 1e-10
-        baseline = totals[('housing', r['model'], 'not_applicable', 'no_retrieval', 'parent', 0)]
-        assert abs(float(r['delta_no_retrieval_pp']) - 100 * (yes + no - baseline) / 4584) < 1e-10
-    assert not example
 
 
 def verify_queries(data):
@@ -298,6 +274,156 @@ def verify_controls(data):
         assert sum(expanded[i] < raw[i] for i in raw) == int(effect[dataset]['raw_only_correct'])
 
 
+def verify_revision(totals):
+    """25 November revision: pooled contrasts, option-phrase strata, neither-found breakdown,
+    tie-order bounds and the Table 3 / Fig. 3 values (deterministic arithmetic only)."""
+    rev = load('revision_20261125/final_statistics.json')
+    models = sorted({k[1] for k in totals if k[3] == 'terra_kg'})
+    assert len(models) == 7
+    pooled = rev['pooled_writer_contrasts']
+    assert len(pooled) == 16
+    for r in pooled:
+        dataset = r['dataset']
+        n = 1071 if dataset == 'mbe' else 4584
+        cells = [totals[dataset, model, extractor, r['writer'], stage, k]
+                 - totals[dataset, model, 'not_applicable', r['baseline'], stage, k]
+                 for extractor in ['qwen', 'llama'] for model in models
+                 for stage in ['parent', 'reranked'] for k in [1, 5, 10, 20]]
+        assert len(cells) == r['cells'] == 112
+        assert abs(100 * sum(cells) / (112 * n) - r['delta_pp']) < 1e-9
+        assert (sum(c > 0 for c in cells), sum(c == 0 for c in cells), sum(c < 0 for c in cells)) == (
+            r['cells_higher'], r['cells_tied'], r['cells_lower'])
+        assert r['ci95_pp'][0] <= r['delta_pp'] <= r['ci95_pp'][1]
+    verify_holm([{'p_raw': r['p_signflip'], 'p_holm_16': r['p_holm_16']} for r in pooled], 'p_holm_16')
+    delta = {(r['dataset'], r['writer'], r['baseline']): r['delta_pp'] for r in pooled}
+    for dataset, four in rev['four_writer_mean_descriptive'].items():
+        for baseline, summary in four.items():
+            mean = sum(delta[dataset, w, baseline] for w in SYSTEMS) / 4
+            assert abs(mean - summary['delta_pp']) < 1e-9
+    assert round(delta['mbe', 'terra_kg', 'qwen3_dense'], 2) == 3.38
+
+    strata = rev['option_phrase_strata']
+    audit = strata['audit']
+    assert audit['stratum_counts'] == {'no_option_phrase': 477, 'sole_correct': 213,
+                                       'sole_distractor': 176, 'multiple_options': 205}
+    phrases = load('review_diagnostics/answer_evidence.json')['mbe_terra_option_phrases']
+    assert audit['questions_by_number_of_options_matched'] == phrases['questions_by_number_of_options_matched']
+    assert (audit['sole_option_correct'], audit['sole_option_distractor']) == (
+        phrases['sole_option_correct'], phrases['sole_option_distractor'])
+    for baseline in ['qwen3_dense', 'bm25']:
+        part = [r for r in strata['rows'] if r['baseline'] == baseline]
+        assert sum(r['questions'] for r in part) == 1071
+        weighted = sum(r['questions'] * r['delta_pp'] for r in part) / 1071
+        assert abs(weighted - delta['mbe', 'terra_kg', baseline]) < 1e-9
+        assert all(r['ci95_pp'][0] <= r['delta_pp'] <= r['ci95_pp'][1] for r in part)
+        by_name = {r['stratum']: r['delta_pp'] for r in part}
+        contrast = strata['correct_minus_distractor'][baseline]
+        assert abs(contrast['correct_minus_distractor_pp'] - (by_name['sole_correct'] - by_name['sole_distractor'])) < 1e-9
+
+    found = rev['neither_found_breakdown']
+    net, seen = Counter(), set()
+    for r in rows('review_diagnostics/mbe_requested_reference_transitions.csv'):
+        if r['prior_group'] == 'all':
+            seen.add((r['model'], r['extractor'], r['stage'], int(r['k'])))
+            net[r['reference_hit_group']] += int(r['net_correct'])
+    assert len(seen) == 112 and dict(net) == found['net_additional_correct_by_reference_group']
+    total = sum(net.values())
+    assert total == found['net_additional_correct_total'] == sum(
+        totals['mbe', m, e, 'terra_kg', s, k] - totals['mbe', m, 'not_applicable', 'qwen3_dense', s, k] for m, e, s, k in seen)
+    assert abs(found['share_from_neither'] - net['neither_hit'] / total) < 1e-12
+    assert (net['neither_hit'], total, round(100 * net['neither_hit'] / total, 2)) == (3905, 4059, 96.21)
+
+    ties = {(r['dataset'], r['view'], r['system']): r for r in rows('raw_cues/tie_sensitivity_summary.csv')}
+    columns = ['r_any10_tie_lower', 'r_any10_lexicographic', 'r_any10_random_tie_expected', 'r_any10_canonical', 'r_any10_tie_upper']
+    quoted = {'qwen38_kg': (60, 65, 82.6, 135, 146), 'gemma4_kg': (59, 67, 84.1, 130, 154),
+              'mistral_kg': (42, 47, 65.7, 105, 117), 'terra_kg': (76, 80, 95.4, 130, 138)}
+    ratios, gains = [], []
+    for system, expected in quoted.items():
+        got = [1071 * float(ties['mbe', 'raw_text', system][c]) for c in columns]
+        assert all(abs(round(g, 1) - e) < 1e-9 for g, e in zip(got, expected)) and got == sorted(got)
+        ratios.append(got[3] / got[1])
+        gains.append(got[2] / got[1] - 1)
+    assert (round(min(ratios), 1), round(max(ratios), 1)) == (1.6, 2.2)
+    assert (round(100 * min(gains)), round(100 * max(gains))) == (19, 40)
+    percent = {s: [round(100 * float(ties['mbe', 'raw_text', s][c]), 2) for c in columns[1:4]] for s in quoted}
+    assert percent['qwen38_kg'] == [6.07, 7.71, 12.61] and percent['terra_kg'] == [7.47, 8.91, 12.14]
+
+    accuracy = {(r['dataset'], r['method'], r['extractor'], r['stage'], int(r['k']), r['model']): float(r['accuracy_percent'])
+                for r in rows('statistics/all_fixed_stage_accuracy.csv')}
+    ir = {(r['dataset'], r['method'], r['extractor'], r['stage'], int(r['k'])): float(r['value'])
+          for r in rows('review_diagnostics/ir_figure_values.csv')}
+    values = rows('revision_20261125/paper_table3_fig3_values.csv')
+    assert len(values) == 48
+    for r in values:
+        if r['stage'] == 'not_applicable':
+            mean = statistics.mean(accuracy[r['dataset'], r['method'], 'not_applicable', 'parent', 0, m] for m in models)
+            assert abs(mean - float(r['table3_mean_accuracy_7_models_4_depths'])) < 1e-6
+            continue
+        stage = 'parent' if r['stage'] == 'initial' else 'reranked'
+        cell = r['dataset'], r['method'], r['extractor'], stage
+        all_depths = statistics.mean(accuracy[cell + (k, m)] for k in [1, 5, 10, 20] for m in models)
+        at_ten = statistics.mean(accuracy[cell + (10, m)] for m in models)
+        assert abs(all_depths - float(r['table3_mean_accuracy_7_models_4_depths'])) < 1e-6
+        assert abs(at_ten - float(r['fig3_mean_accuracy_7_models_k10'])) < 1e-6
+        assert abs(ir[cell + (10,)] - float(r['fig3_primary_ir_at_10'])) < 1e-6
+    return {'pooled_contrasts': 16, 'option_strata': 8, 'neither_found_comparisons': 112,
+            'tie_order_writers': 4, 'table3_fig3_rows': len(values)}
+
+
+def verify_revision_20261126(data, positions, totals):
+    """26 November additions: point estimates recomputed from saved correctness (deterministic)."""
+    base = 'revision_20261126/'
+    models = sorted({k[1] for k in totals if k[3] == 'terra_kg'})
+    pairs = load(base + 'writer_pairs.json')
+    assert len(pairs) == 12
+    for r in pairs:
+        n = 1071 if r['dataset'] == 'mbe' else 4584
+        cells = [totals[r['dataset'], m, e, r['writer_a'], s, k] - totals[r['dataset'], m, e, r['writer_b'], s, k]
+                 for e in ['qwen', 'llama'] for m in models for s in ['parent', 'reranked'] for k in [1, 5, 10, 20]]
+        assert abs(100 * sum(cells) / (112 * n) - r['delta_pp']) < 1e-9
+        assert r['ci95_pp'][0] <= r['delta_pp'] <= r['ci95_pp'][1]
+    verify_holm([{'p_raw': r['p_signflip'], 'p_holm_12': r['p_holm_12']} for r in pairs], 'p_holm_12')
+    gm = [r for r in pairs if (r['dataset'], r['writer_a'], r['writer_b']) == ('mbe', 'gemma4_kg', 'mistral_kg')][0]
+    assert round(gm['delta_pp'], 2) == 4.82 and max(r['p_holm_12'] for r in pairs if r['dataset'] == 'housing') > 0.05
+    assert min(r['p_holm_12'] for r in pairs if r['dataset'] == 'housing') > 0.05
+
+    pilot = load(base + 'housing_pilot_question_ids.json')
+    excluded = {str(i) for part in ['dev', 'test'] for i in pilot[part]}
+    ids = [str(i) for i in data['housing_ids']]
+    keep = np.array([i not in excluded for i in ids])
+    assert int((~keep).sum()) == 384
+    values = data['housing_values'].astype(float)
+    result = load(base + 'housing_without_pilot.json')
+    shifts = []
+    for subset, mask in [('all_4584', np.ones(len(ids), bool)), ('without_pilot_4200', keep)]:
+        assert result[subset]['questions'] == int(mask.sum())
+        for r in result[subset]['contrasts']:
+            diffs = np.column_stack([values[:, positions['housing'][(m, e, r['writer'], s, k)]]
+                                     - values[:, positions['housing'][(m, 'not_applicable', r['baseline'], s, k)]]
+                                     for e in ['qwen', 'llama'] for m in models for s in ['parent', 'reranked'] for k in [1, 5, 10, 20]])
+            assert abs(100 * diffs.mean(axis=1)[mask].mean() - r['delta_pp']) < 1e-9
+    for a, b in zip(result['all_4584']['contrasts'], result['without_pilot_4200']['contrasts']):
+        shifts.append(abs(b['delta_pp'] - a['delta_pp']))
+    assert round(max(shifts), 2) == 0.16
+
+    raw = load(base + 'raw_text_intervals.json')
+    control = defaultdict(dict)
+    for r in rows('review_diagnostics/control_correctness.csv'):
+        control[r['dataset'], r['condition']][r['question_id']] = int(r['correct'])
+    for r in raw['contrasts']:
+        dataset = r['dataset']
+        order = [str(i) for i in data[dataset + '_ids']]
+        cue = np.array([control[dataset, 'raw_passage_cues'][q] for q in order], dtype=float)
+        if r['comparator'] == 'qwen_dense':
+            col = positions[dataset][('gemma3_27b_it', 'not_applicable', 'qwen3_dense', 'parent', 10)]
+        else:
+            col = positions[dataset][('gemma3_27b_it', 'qwen', r['raw_text_writer'], 'parent', 10)]
+        comp = data[dataset + '_values'][:, col].astype(float)
+        assert abs(100 * (cue - comp).mean() - r['delta_pp']) < 1e-9
+        assert r['ci95_pp'][0] <= r['delta_pp'] <= r['ci95_pp'][1]
+    return {'writer_pairs': 12, 'pilot_excluded_questions': 384, 'raw_text_contrasts': len(raw['contrasts'])}
+
+
 def main():
     if not __debug__:
         raise RuntimeError('Run with the normal Python interpreter so assertions are enabled.')
@@ -310,10 +436,12 @@ def main():
         verify_queries(data)
         verify_mbe_diagnostics(data, positions)
         verify_controls(data)
+        revision = verify_revision(totals)
+        revision26 = verify_revision_20261126(data, positions, totals)
     rq2 = json.loads(subprocess.check_output([sys.executable, '-B', str(ROOT / 'housing_rq2/verify.py')], text=True))
     assert rq2['status'] == 'PASS'
     print(json.dumps({'status': 'PASS', 'manifest_members': files, 'fixed_conditions': 1260,
-                      'paired_contrasts': 1792, 'housing_class_conditions': 630,
+                      'paired_contrasts': 1792, 'revision_20261125': revision, 'revision_20261126': revision26,
                       'writer_comparison_rows': 16, 'component_change_medians': 4,
                       'mbe_neither_hit_no_context_strata': 2,
                       'housing_rq2': rq2['housing_first_stage_qwen_extraction'],

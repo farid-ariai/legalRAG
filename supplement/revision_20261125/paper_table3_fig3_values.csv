@@ -1,0 +1,49 @@
+dataset,retriever,method,extractor,stage,table3_mean_accuracy_7_models_4_depths,fig3_mean_accuracy_7_models_k10,fig3_primary_ir_at_10
+mbe,Qwen dense,qwen3_dense,not_applicable,initial,57.216220,58.329999,0.090322
+mbe,Qwen dense,qwen3_dense,not_applicable,reranked,58.236628,58.796852,0.081012
+mbe,E5,e5_dense,not_applicable,initial,53.498066,53.554755,0.013809
+mbe,E5,e5_dense,not_applicable,reranked,54.144991,54.515139,0.049259
+mbe,BM25,bm25,not_applicable,initial,52.834467,52.634387,0.008910
+mbe,BM25,bm25,not_applicable,reranked,55.172069,55.128718,0.032636
+mbe,Terra/Q,terra_kg,qwen,initial,60.760971,61.731359,0.021187
+mbe,Terra/Q,terra_kg,qwen,reranked,61.788049,62.598373,0.062868
+mbe,Terra/L,terra_kg,llama,initial,59.797252,60.744298,0.020038
+mbe,Terra/L,terra_kg,llama,reranked,62.094838,62.758437,0.058279
+mbe,Gemma 4/Q,gemma4_kg,qwen,initial,58.470055,59.237028,0.022711
+mbe,Gemma 4/Q,gemma4_kg,qwen,reranked,59.390423,59.917300,0.056305
+mbe,Gemma 4/L,gemma4_kg,llama,initial,56.916100,57.663065,0.018236
+mbe,Gemma 4/L,gemma4_kg,llama,reranked,59.317060,59.810591,0.057566
+mbe,Qwen 3.8/Q,qwen38_kg,qwen,initial,57.166200,57.529679,0.014512
+mbe,Qwen 3.8/Q,qwen38_kg,qwen,reranked,58.956916,59.223689,0.059475
+mbe,Qwen 3.8/L,qwen38_kg,llama,initial,56.232493,56.716020,0.017325
+mbe,Qwen 3.8/L,qwen38_kg,llama,reranked,58.366680,58.276644,0.061222
+mbe,Mistral/Q,mistral_kg,qwen,initial,52.927838,53.154595,0.016240
+mbe,Mistral/Q,mistral_kg,qwen,reranked,54.421769,54.355075,0.052897
+mbe,Mistral/L,mistral_kg,llama,initial,53.217954,53.568094,0.013562
+mbe,Mistral/L,mistral_kg,llama,reranked,54.251701,54.408430,0.045018
+mbe,No retrieval,no_retrieval,not_applicable,not_applicable,53.101240,53.101240,
+mbe,Oracle,gold,not_applicable,not_applicable,63.065226,63.065226,
+housing,Qwen dense,qwen3_dense,not_applicable,initial,60.745450,61.312640,0.457823
+housing,Qwen dense,qwen3_dense,not_applicable,reranked,59.958551,60.165794,0.421039
+housing,E5,e5_dense,not_applicable,initial,61.742708,62.023186,0.294654
+housing,E5,e5_dense,not_applicable,reranked,60.210982,60.779731,0.430020
+housing,BM25,bm25,not_applicable,initial,65.212852,65.650711,0.198945
+housing,BM25,bm25,not_applicable,reranked,61.796466,62.337946,0.341322
+housing,Terra/Q,terra_kg,qwen,initial,64.619951,64.849788,0.175636
+housing,Terra/Q,terra_kg,qwen,reranked,61.700636,62.406507,0.373834
+housing,Terra/L,terra_kg,llama,initial,65.061705,65.008726,0.156209
+housing,Terra/L,terra_kg,llama,reranked,62.296653,63.036026,0.347484
+housing,Gemma 4/Q,gemma4_kg,qwen,initial,65.016517,65.357766,0.138743
+housing,Gemma 4/Q,gemma4_kg,qwen,reranked,61.939822,62.493767,0.322233
+housing,Gemma 4/L,gemma4_kg,llama,initial,65.508913,65.616430,0.115753
+housing,Gemma 4/L,gemma4_kg,llama,reranked,62.953441,63.550237,0.290619
+housing,Qwen 3.8/Q,qwen38_kg,qwen,initial,64.831090,65.155198,0.172812
+housing,Qwen 3.8/Q,qwen38_kg,qwen,reranked,62.020070,62.540514,0.357349
+housing,Qwen 3.8/L,qwen38_kg,llama,initial,65.628896,65.585266,0.151646
+housing,Qwen 3.8/L,qwen38_kg,llama,reranked,62.493767,63.064074,0.330518
+housing,Mistral/Q,mistral_kg,qwen,initial,65.739529,66.037148,0.122945
+housing,Mistral/Q,mistral_kg,qwen,reranked,63.050829,63.808901,0.321437
+housing,Mistral/L,mistral_kg,llama,initial,66.106488,66.264647,0.106517
+housing,Mistral/L,mistral_kg,llama,reranked,63.662428,64.457118,0.297281
+housing,No retrieval,no_retrieval,not_applicable,not_applicable,66.460982,66.460982,
+housing,Oracle,gold,not_applicable,not_applicable,64.404139,64.404139,

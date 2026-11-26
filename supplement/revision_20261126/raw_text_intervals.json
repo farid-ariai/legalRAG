@@ -1,0 +1,75 @@
+{
+ "seed": 20261126,
+ "bootstrap_draws": 100000,
+ "sign_flips": 200000,
+ "answer_model": "gemma3_27b_it",
+ "stage": "initial",
+ "k": 10,
+ "contrasts": [
+  {
+   "dataset": "mbe",
+   "raw_text_writer": "qwen38_kg",
+   "comparator": "graph_same_writer_qwen_extraction",
+   "raw_text_accuracy": 61.718020541549954,
+   "comparator_accuracy": 62.27824463118581,
+   "delta_pp": -0.5602240896358543,
+   "ci95_pp": [
+    -2.8763528007890904,
+    1.7690875232774672
+   ],
+   "p_signflip": 0.6949165254173729,
+   "raw_only_correct": 75,
+   "comparator_only_correct": 81,
+   "p_holm_4": 1.0
+  },
+  {
+   "dataset": "mbe",
+   "raw_text_writer": "qwen38_kg",
+   "comparator": "qwen_dense",
+   "raw_text_accuracy": 61.718020541549954,
+   "comparator_accuracy": 60.97105508870215,
+   "delta_pp": 0.7469654528478058,
+   "ci95_pp": [
+    -1.8198362147406733,
+    3.3175355450236967
+   ],
+   "p_signflip": 0.617756911215444,
+   "raw_only_correct": 101,
+   "comparator_only_correct": 93,
+   "p_holm_4": 1.0
+  },
+  {
+   "dataset": "housing",
+   "raw_text_writer": "terra_kg",
+   "comparator": "graph_same_writer_qwen_extraction",
+   "raw_text_accuracy": 70.59336823734729,
+   "comparator_accuracy": 69.65532286212914,
+   "delta_pp": 0.9380453752181501,
+   "ci95_pp": [
+    -1.3400713139437805,
+    3.2301488085013625
+   ],
+   "p_signflip": 0.43880280598597005,
+   "raw_only_correct": 575,
+   "comparator_only_correct": 532,
+   "p_holm_4": 1.0
+  },
+  {
+   "dataset": "housing",
+   "raw_text_writer": "terra_kg",
+   "comparator": "qwen_dense",
+   "raw_text_accuracy": 70.59336823734729,
+   "comparator_accuracy": 67.80104712041884,
+   "delta_pp": 2.7923211169284468,
+   "ci95_pp": [
+    -0.7163269474777104,
+    6.290625639165294
+   ],
+   "p_signflip": 0.12648936755316223,
+   "raw_only_correct": 765,
+   "comparator_only_correct": 637,
+   "p_holm_4": 0.5059574702126489
+  }
+ ],
+ "note": "HousingQA graph cell is the run with a different generation seed and GPU memory setting (dagger in the appendix)."
+}

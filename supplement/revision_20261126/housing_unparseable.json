@@ -1,0 +1,48 @@
+{
+ "source": "housing_class_diagnostics.csv",
+ "unit": "percent of 4,584 questions",
+ "models": {
+  "equall_saul_54b_instruct": {
+   "no_retrieval_pct": 0.0,
+   "oracle_pct": 0.15270506108202445,
+   "retrieval_mean_pct": 0.1311379501824528,
+   "retrieval_max_pct": 0.5017452006980803
+  },
+  "equall_saul_7b_instruct_v1": {
+   "no_retrieval_pct": 0.0,
+   "oracle_pct": 0.0,
+   "retrieval_mean_pct": 0.06494923052514676,
+   "retrieval_max_pct": 0.2617801047120419
+  },
+  "gemma3_12b_it": {
+   "no_retrieval_pct": 0.0,
+   "oracle_pct": 0.0,
+   "retrieval_mean_pct": 0.0,
+   "retrieval_max_pct": 0.0
+  },
+  "gemma3_27b_it": {
+   "no_retrieval_pct": 0.0,
+   "oracle_pct": 0.0,
+   "retrieval_mean_pct": 0.0,
+   "retrieval_max_pct": 0.0
+  },
+  "mistral_small_32_24b_instruct_2506": {
+   "no_retrieval_pct": 0.0,
+   "oracle_pct": 0.0,
+   "retrieval_mean_pct": 0.0,
+   "retrieval_max_pct": 0.0
+  },
+  "qwen3_30b_a3b_instruct_2507": {
+   "no_retrieval_pct": 0.0,
+   "oracle_pct": 0.0,
+   "retrieval_mean_pct": 0.0,
+   "retrieval_max_pct": 0.0
+  },
+  "qwen3_8b": {
+   "no_retrieval_pct": 0.0,
+   "oracle_pct": 0.0,
+   "retrieval_mean_pct": 0.0,
+   "retrieval_max_pct": 0.0
+  }
+ }
+}

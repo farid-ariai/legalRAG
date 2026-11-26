@@ -100,17 +100,5 @@
     "questions_with_any_qualifying_phrase": 594,
     "sole_option_correct": 213,
     "sole_option_distractor": 176
-  },
-  "housing_gemma12_reranked_10": {
-    "mistral_kg": {
-      "yes_correct": 741,
-      "no_correct": 2691,
-      "correct": 3432
-    },
-    "qwen3_dense": {
-      "yes_correct": 929,
-      "no_correct": 2305,
-      "correct": 3234
-    }
   }
 }
